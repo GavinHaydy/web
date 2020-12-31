@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :style="{ background: type === 1 ? 'red' : 'orange' }">
     <el-container>
       <el-header>
         <div>
@@ -12,16 +12,24 @@
             </a>
           </div>
           <div>
-            <el-button icon="el-icon-turn-off" id="bg_cl" class="right" title="0">
+            <el-button
+              icon="el-icon-turn-off"
+              id="bg_cl"
+              class="right"
+              title="0"
+            >
             </el-button>
-            <span class="right">深色模式</span>
+            <span class="right" @click="handleChange(type)"
+              >{{ type === 1 ? '浅色' : '深色' }}模式</span
+            >
           </div>
         </div>
       </el-header>
       <el-container>
         <el-aside>aside</el-aside>
-        <el-main>main
-          <router-view/>
+        <el-main
+          >main
+          <router-view />
         </el-main>
       </el-container>
       <el-container>
@@ -32,13 +40,21 @@
             </a>
             <a href="/" target="_blank" class="a"> Powered by BUGPZ</a>
             <span> &nbsp;&nbsp;© 2019 bugpz.xyz 版权所有 </span>
-            <a href="http://beian.miit.gov.cn" target="_blank" class="a">蜀ICP备20003462号</a>
+            <a href="http://beian.miit.gov.cn" target="_blank" class="a"
+              >蜀ICP备20003462号</a
+            >
           </div>
           <div style="width:300px;margin:0 auto; height: 20px">
-            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51011402000281"
-               style="display:inline-block;text-decoration:none;height:20px;line-height:20px;" class="a">
-              <img src="./assets/UI/img/BATB.png" style="float:left;"/>
-              <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393; color: #42b983">
+            <a
+              target="_blank"
+              href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51011402000281"
+              style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"
+              class="a"
+            >
+              <!-- <img src="./assets/UI/img/BATB.png" style="float:left;"/> -->
+              <p
+                style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393; color: #42b983"
+              >
                 川公网安备 51011402000281号
               </p>
             </a>
@@ -46,7 +62,6 @@
         </el-footer>
       </el-container>
     </el-container>
-
   </div>
 </template>
 
@@ -55,13 +70,17 @@ export default {
   name: 'App',
   data () {
     return {
-      bgc: ''
+      type: 1 // 1-深色，2-浅色
     }
   },
-  computed: {
-    btn_state: document.getElementById('bg_cl').title
-  },
   methods: {
+    handleChange (type) {
+      if (type === 1) {
+        this.type = 2
+      } else {
+        this.type = 1
+      }
+    }
   }
 }
 </script>
@@ -96,11 +115,11 @@ export default {
   right: 0;
   bottom: 8%;
   background-size: 50px;
-  background-image: url('./assets/UI/img/re_top.png');
+  /* background-image: url('./assets/UI/img/re_top.png'); */
 }
 
 .bgp {
-  background-color: #F0F8FF;
+  background-color: #f0f8ff;
   /*background: url("../img/bgt.jpg") repeat center 200% fixed;*/
   /*background-color 背景颜色*/
   /*background-image   背景图片地址*/
@@ -151,7 +170,7 @@ export default {
 }
 
 .el-header {
-  background-color: #B3C0D1;
+  background-color: #b3c0d1;
   color: #333;
   text-align: center;
   line-height: 60px;
@@ -161,14 +180,14 @@ export default {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #B3C0D1;
+  background-color: #b3c0d1;
   color: #333;
   text-align: center;
   /*line-height: 60px;*/
 }
 
 .el-aside {
-  background-color: #D3DCE6;
+  background-color: #d3dce6;
   color: #333;
   text-align: center;
   line-height: 200px;
@@ -176,7 +195,7 @@ export default {
 }
 
 .el-main {
-  background-color: #E9EEF3;
+  background-color: #e9eef3;
   color: #333;
   text-align: center;
   line-height: 160px;
