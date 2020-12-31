@@ -3,8 +3,18 @@
     <el-container>
       <el-header>
         <div>
+          <span class="left">
+            BUGPZ
+          </span>
           <div>
-            <a href="#" type="Warning">BUGPZ</a>
+            <a class="a left" href="/">
+              主页
+            </a>
+          </div>
+          <div>
+            <el-button icon="el-icon-turn-off" id="bg_cl" class="right" title="0">
+            </el-button>
+            <span class="right">深色模式</span>
           </div>
         </div>
       </el-header>
@@ -15,19 +25,20 @@
         </el-main>
       </el-container>
       <el-container>
-        <el-footer >
+        <el-footer>
           <div class="container">
-            <a href="mailto:bugpz2779@gamil.com">
+            <a href="mailto:bugpz2779@gamil.com" class="a" target="_blank">
               点击联系我们
             </a>
-            <a href="/" target="_blank"> Powered by BUGPZ</a>
+            <a href="/" target="_blank" class="a"> Powered by BUGPZ</a>
             <span> &nbsp;&nbsp;© 2019 bugpz.xyz 版权所有 </span>
-            <a href="http://beian.miit.gov.cn" target="_blank">蜀ICP备20003462号</a>
+            <a href="http://beian.miit.gov.cn" target="_blank" class="a">蜀ICP备20003462号</a>
           </div>
           <div style="width:300px;margin:0 auto; height: 20px">
-            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51011402000281" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+            <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51011402000281"
+               style="display:inline-block;text-decoration:none;height:20px;line-height:20px;" class="a">
               <img src="./assets/UI/img/BATB.png" style="float:left;"/>
-              <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">
+              <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393; color: #42b983">
                 川公网安备 51011402000281号
               </p>
             </a>
@@ -41,7 +52,17 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      bgc: ''
+    }
+  },
+  computed: {
+    btn_state: document.getElementById('bg_cl').title
+  },
+  methods: {
+  }
 }
 </script>
 
@@ -53,9 +74,11 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-a {
+
+.a {
   color: #42b983;
 }
+
 .footer {
   background-color: #5bc0de;
   text-align: center;
@@ -100,35 +123,41 @@ a {
   overflow: auto;
   background-color: #f5ffcf;
 }
-.index_div1{
+
+.index_div1 {
   float: left;
   margin-left: 10%;
   width: 60%;
 }
-.index_div2{
+
+.index_div2 {
   float: left;
   padding-left: 15px;
   width: 25%;
   height: 200px;
   background-color: #ffc9e9;
 }
-.my_space_Navigation{
+
+.my_space_Navigation {
   width: 33%;
   text-align: center;
 }
+
 .container {
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
 }
-.el-header{
+
+.el-header {
   background-color: #B3C0D1;
   color: #333;
   text-align: center;
   line-height: 60px;
 }
-.el-footer{
+
+.el-footer {
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -143,6 +172,7 @@ a {
   color: #333;
   text-align: center;
   line-height: 200px;
+  height: 100%;
 }
 
 .el-main {
@@ -163,5 +193,13 @@ body > .el-container {
 
 .el-container:nth-child(7) .el-aside {
   line-height: 320px;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
 }
 </style>
