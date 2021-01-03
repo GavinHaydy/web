@@ -40,7 +40,7 @@
         </el-aside>
         <el-main
         >main
-          <router-view></router-view>
+          <router-view v-if="$route.meta.home"></router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -51,7 +51,7 @@
 
 <script>
 export default {
-  name: "Base",
+  name: 'Base',
   data () {
     return {
       type: 1 // 1-深色，2-浅色

@@ -1,10 +1,11 @@
 <template>
-    <iframe class="iframe" src="static/1.html"></iframe>
+  <h1>404 页面正在加急制作</h1>
 </template>
+
 <script>
-  export default {
-    name: "urlerror"
-  }
+export default {
+  name: 'Urlerror'
+}
 </script>
 
 <style scoped>

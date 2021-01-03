@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import urlerror from "../components/urlerror";
-import App from "../App";
+import Urlerror from '../components/Urlerror'
+import App from '@/App'
 
 Vue.use(Router)
-
 export default new Router({
   mode: 'history',
   routes: [
@@ -14,7 +13,8 @@ export default new Router({
       name: 'index',
       component: App,
       meta: {
-        keepAlive: false
+        home: false,
+        keepAlive: true
       }
     },
     {
@@ -22,15 +22,19 @@ export default new Router({
       name: 'HelloWorld',
       component: HelloWorld,
       meta: {
-        keepAlive: false
+        home: true,
+        keepAlive: true,
+        app_view: false
       }
     },
     {
       path: '*',
       name: 'error',
-      component: urlerror,
+      component: Urlerror,
       meta: {
-        keepAlive: true
+        home: false,
+        keepAlive: false,
+        app_view: true
       }
     }
   ]
