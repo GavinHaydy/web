@@ -1,6 +1,6 @@
 <template>
   <div id="HelloWorld">
-    <h1>{{msg}}</h1>
+    <h1 v-for="i in 100">{{msg}}</h1>
   </div>
 </template>
 
