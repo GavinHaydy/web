@@ -10,6 +10,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Urlerror from '../components/Urlerror'
 import {Layout} from '@/layouts'
+import Navigation from "../components/Navigation";
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -31,6 +32,11 @@ export default new Router({
           }
         }
       ]
+    },
+    {
+      path: '/nav',
+      name: 'Navigation',
+      component: Navigation
     },
     {
       path: '*',
