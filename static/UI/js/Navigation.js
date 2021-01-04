@@ -1,29 +1,7 @@
-<!--
- * @Description:
- * @Author: zhu
- * @Date: 2021-01-04 16:55:34
- * @LastEditTime: 2021-01-04 16:56:18
- * @LastEditors: zhu
--->
-<template>
-  <div>
-    <div v-for="(val,key) in body" :key="key" class="out">
-      <a :href="key"  target="_blank">
-        <img :src="`../static/UI/icon/${val}.png`"  class="pic" :alt="`点击跳转到${val}`"/>
-        <span>
-          {{ val }}
-        </span>
-      </a>
-    </div>
-  </div>
-</template>
 
-<script>
-export default {
-  name: 'Navigation',
-  data () {
-    return {
-      body: {
+onload = function navigation() {
+    let d = document.getElementById('Navigation')
+    let body = {
         'https://github.com/': 'github',
         'https://www.v2ex.com/': 'V2EX',
         'https://www.aliyun.com/': 'aliyun',
@@ -45,20 +23,12 @@ export default {
         'https://imgurl.org/': 'imgurl',
         'https://www.processon.com/': 'processon',
         'http://www.xiachufang.com/': 'xiachufang'
-      }
+    };
+    for(let i in body){
+        $(d).append('<div style="width: 25%; float: left;"><a href='+i +' '+' target="_blank">\n' +
+        '        <img style="width: 32px; height: 32px;" src='+body[i]+'"/static/UI/icon/.png\  ">\n' +
+        '        <span data-v-ed292c2c="">'+body[i]+'</span>\n' +
+        '    </a></div>')
     }
-  }
-}
-</script>
 
-<style scoped>
-.out{
-  background-color: #ff94ee;
-  width: 25%;
-  float: left;
 }
-.pic{
-  width: 32px;
-  height: 32px;
-}
-</style>
