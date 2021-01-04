@@ -1,6 +1,13 @@
+<!--
+ * @Description: 
+ * @Author: zhu
+ * @Date: 2020-12-31 15:29:35
+ * @LastEditTime: 2021-01-04 10:16:02
+ * @LastEditors: zhu
+-->
 <template>
   <div id="HelloWorld">
-    <h1>{{msg}}</h1>
+    <h1 v-for="i in 100" :key="i">{{ msg }}</h1>
   </div>
 </template>
 
@@ -17,7 +24,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 ul {
