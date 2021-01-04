@@ -1,21 +1,28 @@
+<!--
+ * @Description: 
+ * @Author: zhu
+ * @Date: 2021-01-04 16:55:34
+ * @LastEditTime: 2021-01-04 16:56:18
+ * @LastEditors: zhu
+-->
 <template>
   <div>
-    <div v-for='i in body' :key="i">
-      <a href="{{i}}" :key="i" target="_blank">
-        <img src="../assets/UI/icon/{{i}}.png" :key="i">
+    <div v-for="i in body" :key="i">
+      <a :href="i" :key="i" target="_blank">
+        <img :src="`../assets/UI/icon/${i}.png`" :key="i" />
         <span>
-          {{i}}
+          {{ i }}
         </span>
       </a>
     </div>
   </div>
-<!--  <div-->
-<!--    style="width: 25%; float: left;"><a href=' + {{this.body[i]}} + '  target="_blank">\n' +-->
-<!--    '        <img style="width: 32px; height: 32px;" src="../assets/UI/icon/'+{{this.body[i]}}+'.png\  ">-->
-<!--      <span data-v-ed292c2c="">{{ this.body[i] }}-->
-<!--      </span>-->
-<!--    </a>-->
-<!--  </div>-->
+  <!--  <div-->
+  <!--    style="width: 25%; float: left;"><a href=' + {{this.body[i]}} + '  target="_blank">\n' +-->
+  <!--    '        <img style="width: 32px; height: 32px;" src="../assets/UI/icon/'+{{this.body[i]}}+'.png\  ">-->
+  <!--      <span data-v-ed292c2c="">{{ this.body[i] }}-->
+  <!--      </span>-->
+  <!--    </a>-->
+  <!--  </div>-->
 </template>
 
 <script>
@@ -51,6 +58,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
