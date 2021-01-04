@@ -2,14 +2,14 @@
  * @Description: 路由
  * @Author: zhu
  * @Date: 2020-12-31 15:29:35
- * @LastEditTime: 2021-01-04 10:21:59
+ * @LastEditTime: 2021-01-04 11:35:59
  * @LastEditors: zhu
  */
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Urlerror from '../components/Urlerror'
-import Layout from '@/layouts/Layout'
+import {Layout} from '@/layouts'
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -19,10 +19,6 @@ export default new Router({
       name: 'index',
       component: Layout,
       redirect: '/hw',
-      meta: {
-        home: false,
-        keepAlive: true
-      },
       children: [
         {
           path: '/hw',

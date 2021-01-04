@@ -2,13 +2,14 @@
  * @Description: layout
  * @Author: zhu
  * @Date: 2021-01-04 10:03:14
- * @LastEditTime: 2021-01-04 10:17:25
+ * @LastEditTime: 2021-01-04 11:36:39
  * @LastEditors: zhu
 -->
 <template>
   <div>
-    <Base v-if="$route.meta.keepAlive" />
-    <Fooder v-if="$route.meta.keepAlive" />
+    <Base />
+    <router-view />
+    <Fooder />
   </div>
 </template>
 <script>
