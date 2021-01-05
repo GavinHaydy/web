@@ -8,7 +8,7 @@
 <template>
   <div>
     <Base />
-    <router-view />
+<!--    <router-view />-->
     <Fooder />
   </div>
 </template>

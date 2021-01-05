@@ -13,17 +13,21 @@
             BUGPZ
           </span>
           <div>
-            <a class="a left" href="/">
+            <a class="a left m_l" href="/">
               主页
+            </a>
+            <a class="a left m_l" href="/nav">
+              站外导航
             </a>
           </div>
           <div>
             <el-button
               :icon="type === 1 ? 'el-icon-turn-off' : 'el-icon-open'"
               id="bg_cl"
-              class="right"
+              class="right col_btn"
               title="0"
               @click="handleChange(type)"
+              circle
             >
             </el-button>
             <span class="right">{{ type === 1 ? '浅色' : '深色' }}模式</span>
@@ -48,7 +52,7 @@
         </el-aside>
         <el-main
           >main
-          <!-- <router-view v-if="$route.meta.home"></router-view> -->
+           <router-view v-if="$route.meta.home"></router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -83,7 +87,15 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height: 94vh;
+  /*height: 100vh;*/
+}
+.col_btn{
+  margin-top: 10px;
+  height: 40px;
+}
+
+.m_l{
+  margin-left: 10px;
 }
 
 .a {
