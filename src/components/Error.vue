@@ -1,6 +1,6 @@
 <template>
 <!--  <h1>404 页面正在加急制作</h1>-->
-  <div id="Urlerror">
+  <div id="Error">
     <div v-for="site in info" :key="site">
       {{site.name}}{{site.info}}
     </div>
@@ -10,7 +10,7 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'Urlerror',
+  name: 'Error',
   data () {
     return {
       info: null

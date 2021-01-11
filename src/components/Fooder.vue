@@ -20,7 +20,7 @@
         >
           <!-- <img src="./assets/UI/img/BATB.png" style="float:left;"/> -->
           <p
-            style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393; color: #42b983"
+            style="float:left;height:20px;line-height:20px;margin: 0 0 0 5px; color:#939393; color: #42b983"
           >
             川公网安备 51011402000281号
           </p>
@@ -31,9 +31,9 @@
 </template>
 
 <script>
-    export default {
-        name: "Fooder"
-    }
+export default {
+  name: 'Fooder'
+}
 </script>
 
 <style scoped>

@@ -7,10 +7,10 @@
  */
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import Urlerror from '../components/Urlerror'
-import {Layout} from '@/layouts'
-import Navigation from "../components/Navigation";
+import HelloWorld from '../components/HelloWorld'
+import Error from '../components/Error'
+import {Layout} from '../layouts'
+import Navigation from '../components/Navigation'
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -41,7 +41,7 @@ export default new Router({
     {
       path: '*',
       name: 'error',
-      component: Urlerror,
+      component: Error,
       meta: {
         home: false,
         keepAlive: false,
