@@ -8,9 +8,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '../components/HelloWorld'
-import Error from '../components/Error'
 import {Layout} from '../layouts'
 import Navigation from '../components/Navigation'
+import register from '../pages/login/register'
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -39,14 +39,9 @@ export default new Router({
       component: Navigation
     },
     {
-      path: '*',
-      name: 'error',
-      component: Error,
-      meta: {
-        home: false,
-        keepAlive: false,
-        app_view: true
-      }
+      path: '/register',
+      name: '注册',
+      component: register
     }
   ]
 })
