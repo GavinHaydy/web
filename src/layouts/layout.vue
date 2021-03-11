@@ -9,16 +9,13 @@
   <div>
     <Base />
 <!--    <router-view />-->
-    <Fooder />
   </div>
 </template>
 <script>
 import Base from '../components/Base'
-import Fooder from '../components/Fooder'
 export default {
   components: {
-    Base,
-    Fooder
+    Base
   }
 }
 </script>
