@@ -69,13 +69,17 @@
       </el-row>
       <el-row>
         <el-form-item
-          label="电话"
+          label="性别"
         >
           <el-input
-            v-model="phone"
-            maxlength="11"
+            v-model="sex"
           ></el-input>
         </el-form-item>
+      </el-row>
+      <el-row>
+        <el-button
+          type="primary"
+        >注册</el-button>
       </el-row>
     </el-form>
   </div>
