@@ -79,6 +79,7 @@
       <el-row>
         <el-button
           type="primary"
+          @click="handleClick"
         >注册</el-button>
       </el-row>
     </el-form>
@@ -86,6 +87,8 @@
 </template>
 
 <script>
+// import service from '../../utils/request'
+import {userRegister} from '../../api/register'
 export default {
   name: 'register',
   data () {
@@ -96,6 +99,17 @@ export default {
       password: '',
       rePass: '',
       email: ''
+    }
+  },
+  methods: {
+    handleClick () {
+      userRegister({
+        'username': this.user,
+        'phone': this.phone,
+        'sex': this.sex,
+        'password': this.password,
+        'email': this.email
+      })
     }
   }
 }
