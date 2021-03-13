@@ -7,14 +7,19 @@
  * @LastEditors: BugP
 -->
 <template>
-  <div>
-    <div>从头开始</div>
+  <div
+    class="div"
+  >
+    <HD/>
   </div>
 </template>
 
 <script>
+import HD from '../pages/default/topNV'
+
 export default {
   name: 'Base',
+  components: {HD},
   data () {
     return {
       type: 1 // 1-深色，2-浅色
