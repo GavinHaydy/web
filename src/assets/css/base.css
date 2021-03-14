@@ -21,6 +21,7 @@
 
 a {
   color: limegreen;
+  vertical-align: sub;
 }
 
 .left {
