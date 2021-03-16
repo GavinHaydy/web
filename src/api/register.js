@@ -18,3 +18,13 @@ export const userRegister = (data = {}) => {
     data
   })
 }
+export const userLogin = (data = {}) => {
+  return request({
+    header: {
+      'Content-Type': 'application/json'
+    },
+    url: '/api/login',
+    method: Method.POST,
+    data
+  })
+}
