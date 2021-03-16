@@ -10,6 +10,7 @@ import Router from 'vue-router'
 import HelloWorld from '../components/HelloWorld'
 import {Layout} from '../layouts'
 import register from '../pages/login/register'
+import login from '../pages/login/login'
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -36,6 +37,11 @@ export default new Router({
       path: '/register',
       name: '注册',
       component: register
+    },
+    {
+      path: '/login',
+      name: '登录',
+      component: login
     }
   ]
 })
