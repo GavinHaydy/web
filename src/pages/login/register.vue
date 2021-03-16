@@ -103,11 +103,12 @@ export default {
   },
   methods: {
     handleClick () {
+      const md5Password = this.$md5(this.password)
       userRegister({
         'username': this.user,
         'phone': this.phone,
         'sex': this.sex,
-        'password': this.password,
+        'password': md5Password,
         'email': this.email
       })
     }
