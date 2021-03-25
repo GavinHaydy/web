@@ -68,7 +68,7 @@ export default {
   methods: {
     handleLogin () {
       if (!/^1[0-9]{10}$/.test(this.phone)) {
-        alert('手机号格式不对，请重新输入')
+        this.$message.error('手机号格式不对，请重新输入')
         this.phone = this.password = ''
       } else {
         const md5Password = this.$md5(this.password)
@@ -81,7 +81,7 @@ export default {
               this.res = response.data
               location.replace('/')
             } else {
-              alert(response.data.message)
+              this.$message.error(response.data.msg)
               location.reload()
             }
           })
