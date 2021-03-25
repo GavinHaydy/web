@@ -82,7 +82,7 @@ export default {
               location.replace('/')
             } else {
               this.$message.error(response.data.msg)
-              location.reload()
+              setTimeout(function () { location.reload() }, 1500) // 一秒后刷新页面
             }
           })
       }
