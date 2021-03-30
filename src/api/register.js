@@ -13,7 +13,7 @@ export const userRegister = (data = {}) => {
     header: {
       'Content-Type': 'application/json'
     },
-    url: '/api/register',
+    url: '/api/user/register',
     method: Method.POST,
     data
   })
@@ -23,7 +23,7 @@ export const userLogin = (data = {}) => {
     header: {
       'Content-Type': 'application/json'
     },
-    url: '/api/login',
+    url: '/api/user/login',
     method: Method.POST,
     data
   })
