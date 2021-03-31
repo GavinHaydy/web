@@ -28,3 +28,33 @@ export const userLogin = (data = {}) => {
     data
   })
 }
+export const userDelete = (data = {}) => {
+  return request({
+    url: '/api/user/delete' + data.phone,
+    method: Method.DELETE,
+    data
+  })
+}
+export const userUpdate = (data = {}) => {
+  return request({
+    header: {
+      'Content-Type': 'application/json'
+    },
+    url: '/api/user/' + data.phone,
+    method: Method.PUT,
+    data
+  })
+}
+export const userFind = (data = {}) => {
+  return request({
+    url: '/api/user' + data.phone,
+    method: Method.GET,
+    data
+  })
+}
+export const userFindAll = () => {
+  return request({
+    url: '/api/user',
+    method: Method.GET
+  })
+}
