@@ -1,9 +1,9 @@
 /*
- * @Description:register.js
+ * @Description:user.js
  * @CreatedBy:WebStorm
  * @Author: BugP
  * @Date: 2021-03-12 11:46
- * @LastEditTime: 2021-03-12 11:46
+ * @LastEditTime: 2021-3-31 16:38:43
  * @LastEditors: BugP
 */
 import request, {Method} from '../utils/request'

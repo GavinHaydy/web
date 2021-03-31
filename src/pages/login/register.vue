@@ -88,7 +88,7 @@
 
 <script>
 // import service from '../../utils/request'
-import {userRegister} from '../../api/register'
+import {userRegister} from '../../api/user'
 export default {
   name: 'register',
   data () {
