@@ -19,21 +19,7 @@ import HD from '../pages/default/topNV'
 
 export default {
   name: 'Base',
-  components: {HD},
-  data () {
-    return {
-      type: 1 // 1-深色，2-浅色
-    }
-  },
-  methods: {
-    handleChange (type) {
-      if (type === 1) {
-        this.type = 2
-      } else {
-        this.type = 1
-      }
-    }
-  }
+  components: {HD}
 }
 </script>
 
