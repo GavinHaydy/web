@@ -7,7 +7,7 @@
  */
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '../components/HelloWorld'
+// import HelloWorld from '../components/HelloWorld'
 import {Layout} from '../layouts'
 import register from '../pages/login/register'
 import login from '../pages/login/login'
@@ -24,7 +24,7 @@ export default new Router({
         {
           path: '/hw',
           name: 'HelloWorld',
-          component: HelloWorld,
+          // component: HelloWorld,
           meta: {
             home: true,
             keepAlive: true,
