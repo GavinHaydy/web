@@ -12,6 +12,18 @@ const service = axios.create({
   // baseURL: '106.13.171.218:81',
   timeout: 5000
 })
+service.interceptors.request.use(
+  config => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      config.headers.authorization = token
+    }
+    return config
+  },
+  error => {
+    return Promise.reject(error)
+  }
+)
 service.interceptors.response.use(function (response) {
   if (response.data.code === 200) {
     return response
