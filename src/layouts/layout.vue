@@ -7,15 +7,27 @@
 -->
 <template>
   <div>
-    <Base />
-<!--    <router-view />-->
+    <el-row>
+      <el-col
+        :span=4
+      >
+        <Left/>
+      </el-col>
+      <el-col
+        :span=20
+      >
+        <Top/>
+      </el-col>
+    </el-row>
   </div>
 </template>
 <script>
-import Base from '../components/Base'
+import Left from '../pages/navigation/left'
+import Top from '../pages/navigation/top'
 export default {
   components: {
-    Base
+    Left,
+    Top
   }
 }
 </script>
