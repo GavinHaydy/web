@@ -77,8 +77,13 @@ export default {
           'password': md5Password
         })
           .then(response => {
-            if (response.data.message === '欢迎登录') {
-              this.res = response.data
+            if (response.data.msg === '登录成功') {
+              this.res = response.data.token
+              const token = response.data.token
+              console.log(token)
+              localStorage.setItem('token', token)
+              localStorage.setItem('username', response.data.username)
+              localStorage.setItem('is_login', 'true')
               location.replace('/')
             } else {
               this.$message.error(response.data.msg)
