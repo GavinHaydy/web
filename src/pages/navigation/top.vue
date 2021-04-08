@@ -1,18 +1,28 @@
 <!--
- * @Description:topNV.vue
+ * @Description:顶部导航
  * @CreatedBy:WebStorm
- * @Author: BugP
+ * @Author: the-ruffian
  * @Date: 2021-03-13 18:43
- * @LastEditTime: 2021-03-13 21:12:44
- * @LastEditors: BugP
+ * @LastEditTime: 2021-4-8 17:23:10
+ * @LastEditors: the-ruffian
 -->
 <template>
   <div
     class="topNV"
   >
-    <el-row>
+    <el-row
+      :span=20
+    >
       <el-col
         :span=1
+      >
+        <el-button
+          icon="el-icon-s-fold"
+        ></el-button>
+      </el-col>
+      <el-col
+        :span=1
+        :offset=1
       >
         <a href="/">主页</a>
       </el-col>
