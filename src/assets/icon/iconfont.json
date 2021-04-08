@@ -1,0 +1,142 @@
+{
+  "id": "2329097",
+  "name": "admin",
+  "font_family": "ift",
+  "css_prefix_text": "i-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "15984203",
+      "name": "商品目录",
+      "font_class": "merchantGoods",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
+      "icon_id": "1685711",
+      "name": "其他",
+      "font_class": "other",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    },
+    {
+      "icon_id": "4165605",
+      "name": "财务管理",
+      "font_class": "finance",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "5043067",
+      "name": "商家管理",
+      "font_class": "merchant",
+      "unicode": "e68a",
+      "unicode_decimal": 59018
+    },
+    {
+      "icon_id": "6476516",
+      "name": "广告管理",
+      "font_class": "ad",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "6586868",
+      "name": "首页-选中",
+      "font_class": "home",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "9033373",
+      "name": "系统设置",
+      "font_class": "system",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "10094372",
+      "name": "商品管理",
+      "font_class": "commodity",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "10104516",
+      "name": "库存查询",
+      "font_class": "repertory",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "10271159",
+      "name": "cms",
+      "font_class": "cms",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "10740753",
+      "name": "订单管理",
+      "font_class": "order",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "11858975",
+      "name": "消息管理",
+      "font_class": "msg",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "12500106",
+      "name": "物流管理",
+      "font_class": "logistics",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "13671461",
+      "name": "活动 管理@2x",
+      "font_class": "activity",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "14260218",
+      "name": "菜谱管理",
+      "font_class": "menu",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "14461308",
+      "name": "团长管理",
+      "font_class": "colonel",
+      "unicode": "e669",
+      "unicode_decimal": 58985
+    },
+    {
+      "icon_id": "15082220",
+      "name": "用户 管理",
+      "font_class": "user",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "18997887",
+      "name": "售后管理",
+      "font_class": "after-sale",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "2960097",
+      "name": "营销管理",
+      "font_class": "marketing",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    }
+  ]
+}
