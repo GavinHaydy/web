@@ -21,6 +21,7 @@
         class="right"
       >
         <a :href="register" v-if="login === null">注册</a>
+        <a @click="handleExit" v-else>退出</a>
       </el-col>
       <el-col
         :span=1
@@ -30,7 +31,7 @@
         <a :href="loginPath">登录</a>
       </el-col>
       <el-col
-        :span=1
+        :span=3
         class="right"
         v-else
       >
@@ -49,6 +50,12 @@ export default {
       loginPath: '/login',
       login: localStorage.getItem('is_login'),
       username: localStorage.getItem('username')
+    }
+  },
+  methods: {
+    handleExit () {
+      localStorage.clear()
+      location.replace('/')
     }
   }
 }
