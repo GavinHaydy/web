@@ -7,6 +7,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/css/base.css'
 import md5 from 'js-md5'
+import '../src/assets/icon/iconfont'
 
 Vue.use(ElementUI)
 Vue.prototype.$md5 = md5
