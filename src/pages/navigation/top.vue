@@ -18,6 +18,7 @@
       >
         <el-button
           icon="el-icon-s-fold"
+          @click="$store.commit('handleClick')"
         ></el-button>
       </el-col>
       <el-col
@@ -48,6 +49,7 @@
         <a>{{username}}</a>
       </el-col>
     </el-row>
+    <el-button @click="handleX">{{$store.state.types.type}}</el-button>
   </div>
 </template>
 
@@ -66,6 +68,9 @@ export default {
     handleExit () {
       localStorage.clear()
       location.replace('/')
+    },
+    handleX () {
+      console.log(this.$store)
     }
   }
 }
