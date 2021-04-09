@@ -8,14 +8,17 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './assets/css/base.css'
 import md5 from 'js-md5'
 import '../src/assets/icon/iconfont'
+import store from './store'
 
 Vue.use(ElementUI)
 Vue.prototype.$md5 = md5
+Vue.prototype.$store = store
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   components: { App },
   template: '<App/>'
