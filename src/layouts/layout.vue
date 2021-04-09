@@ -9,12 +9,12 @@
   <div>
     <el-row>
       <el-col
-        :span=4
+        :span= "$store.state.types.type === 1 ? 3 : 1"
       >
         <Left/>
       </el-col>
       <el-col
-        :span=20
+        :span="$store.state.types.type === 1 ? 21 : 23"
       >
         <Top/>
       </el-col>
