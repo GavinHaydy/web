@@ -11,13 +11,14 @@
     class="topNV"
   >
     <el-row
-      :span=20
+      :span=24
     >
       <el-col
         :span=1
       >
         <el-button
-          icon="el-icon-s-fold"
+          class="left"
+          :icon="$store.state.types.type ===1 ? 'el-icon-s-fold' : 'el-icon-s-unfold' "
           @click="$store.commit('handleClick')"
         ></el-button>
       </el-col>
@@ -49,7 +50,6 @@
         <a>{{username}}</a>
       </el-col>
     </el-row>
-    <el-button @click="handleX">{{$store.state.types.type}}</el-button>
   </div>
 </template>
 
@@ -68,9 +68,6 @@ export default {
     handleExit () {
       localStorage.clear()
       location.replace('/')
-    },
-    handleX () {
-      console.log(this.$store)
     }
   }
 }
