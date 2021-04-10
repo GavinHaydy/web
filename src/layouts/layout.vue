@@ -7,18 +7,10 @@
 -->
 <template>
   <div>
-    <el-row>
-      <el-col
-        :span= "$store.state.types.type === 1 ? 3 : 1"
-      >
-        <Left/>
-      </el-col>
-      <el-col
-        :span="$store.state.types.type === 1 ? 21 : 23"
-      >
-        <Top/>
-      </el-col>
-    </el-row>
+    <Left/>
+    <router-view
+      :style="{marginLeft: $store.state.types.type === 1 ? '201px!important' : '64px!important'}"
+    />
   </div>
 </template>
 <script>
