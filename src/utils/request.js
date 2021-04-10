@@ -25,8 +25,11 @@ service.interceptors.request.use(
   }
 )
 service.interceptors.response.use(function (response) {
-  if (response.data.code === 200) {
+  if (response.data.code !== 400) {
     return response
+  } else if (response.data.state === false) {
+    localStorage.clear()
+    location.replace('/')
   } else {
     return response.data.message
   }
