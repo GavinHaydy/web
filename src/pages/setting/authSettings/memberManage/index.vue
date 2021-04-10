@@ -11,8 +11,6 @@
     <div>
       <el-table
         :data="userList"
-        stripe="true"
-        border
         highlight-current-row
       >
         <el-table-column
