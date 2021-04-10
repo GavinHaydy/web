@@ -17,16 +17,11 @@
         :span=1
       >
         <el-button
+          size="mini"
           class="left"
           :icon="$store.state.types.type ===1 ? 'el-icon-s-fold' : 'el-icon-s-unfold' "
           @click="$store.commit('handleClick')"
         ></el-button>
-      </el-col>
-      <el-col
-        :span=1
-        :offset=1
-      >
-        <a href="/">主页</a>
       </el-col>
       <el-col
         :span=1
