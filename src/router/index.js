@@ -11,6 +11,8 @@ import Router from 'vue-router'
 import {Layout} from '../layouts'
 import register from '../pages/login/register'
 import login from '../pages/login/login'
+import setting from './settings'
+import errorPage from '../pages/errorPage'
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -21,15 +23,10 @@ export default new Router({
       component: Layout,
       redirect: '/hw',
       children: [
+        setting,
         {
           path: '/hw',
-          name: 'HelloWorld',
-          // component: HelloWorld,
-          meta: {
-            home: true,
-            keepAlive: true,
-            app_view: true
-          }
+          name: 'HelloWorld'
         }
       ]
     },
@@ -42,6 +39,14 @@ export default new Router({
       path: '/login',
       name: '登录',
       component: login
-    }
+    },
+    {
+      path: '*',
+      redirect: 'error',
+      component: Layout,
+      children: [{
+        path: 'error',
+        component: errorPage
+      }]}
   ]
 })
