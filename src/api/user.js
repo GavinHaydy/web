@@ -1,10 +1,10 @@
 /*
  * @Description:user.js
  * @CreatedBy:WebStorm
- * @Author: BugP
+ * @Author: the-ruffian
  * @Date: 2021-03-12 11:46
- * @LastEditTime: 2021-3-31 16:38:43
- * @LastEditors: BugP
+ * @LastEditTime: 2021-04-11 19:20:50
+ * @LastEditors: the-ruffian
 */
 import request, {Method} from '../utils/request'
 
@@ -30,7 +30,7 @@ export const userLogin = (data = {}) => {
 }
 export const userDelete = (data = {}) => {
   return request({
-    url: '/api/user/delete' + data.phone,
+    url: '/api/user/delete/' + data.phone,
     method: Method.DELETE,
     data
   })
