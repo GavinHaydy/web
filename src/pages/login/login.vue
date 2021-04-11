@@ -1,10 +1,10 @@
 <!--
  * @Description:login.vue
  * @CreatedBy:WebStorm
- * @Author: BugP
+ * @Author: the-ruffian
  * @Date: 2021-03-16 09:21
- * @LastEditTime: 2021-03-16 09:21
- * @LastEditors: BugP
+ * @LastEditTime: 2021-04-11 19:15:07
+ * @LastEditors: the-ruffian
 -->
 <template>
   <div class="div">
@@ -40,11 +40,21 @@
           </el-row>
           <el-row>
             <el-button
+              size="mini"
               type="primary"
               class="right"
               @click="handleLogin"
             >
               登录
+            </el-button>
+            <el-button
+              size="mini"
+              style="margin-right: 10%"
+              type="success"
+              class="right"
+              @click="Register"
+            >
+              注册
             </el-button>
           </el-row>
         </el-form>
@@ -60,6 +70,7 @@ export default {
   name: 'login',
   data () {
     return {
+      register: '/register',
       phone: '',
       password: '',
       res: ''
@@ -91,6 +102,9 @@ export default {
             }
           })
       }
+    },
+    Register () {
+      location.replace(this.register)
     }
   }
 }
