@@ -111,6 +111,14 @@ export default {
         'password': md5Password,
         'email': this.email
       })
+        .then(res => {
+          if (res.data.code === 200) {
+            this.$message.success(res.data.msg)
+            setTimeout(function () { location.replace('/login') }, 2000)
+          } else {
+            this.message.error(res.data.msg)
+          }
+        })
     }
   }
 }
