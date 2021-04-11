@@ -77,7 +77,7 @@ export default {
           'password': md5Password
         })
           .then(response => {
-            if (response.data.msg === '登录成功') {
+            if (response.data.code === 200) {
               this.res = response.data.token
               const token = response.data.token
               console.log(token)
