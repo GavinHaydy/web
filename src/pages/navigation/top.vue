@@ -27,20 +27,12 @@
         :span=1
         class="right"
       >
-        <a :href="register" v-if="login === null">注册</a>
-        <a @click="handleExit" v-else>退出</a>
-      </el-col>
-      <el-col
-        :span=1
-        class="right"
-        v-if="username === null"
-      >
-        <a :href="loginPath">登录</a>
+        <a @click="handleExit" v-if="login !== null">退出</a>
       </el-col>
       <el-col
         :span=3
         class="right"
-        v-else
+        v-if="login !== null"
       >
         <a>{{username}}</a>
       </el-col>
@@ -53,8 +45,6 @@ export default {
   name: 'topNV',
   data () {
     return {
-      register: '/register',
-      loginPath: '/login',
       login: localStorage.getItem('is_login'),
       username: localStorage.getItem('username')
     }
@@ -62,7 +52,7 @@ export default {
   methods: {
     handleExit () {
       localStorage.clear()
-      location.replace('/')
+      location.replace('/login')
     }
   }
 }
