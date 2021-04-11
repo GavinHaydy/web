@@ -17,9 +17,25 @@
 import Left from '../pages/navigation/left'
 import Top from '../pages/navigation/top'
 export default {
+  data () {
+    return {
+      login: localStorage.getItem('is_login')
+    }
+  },
   components: {
     Left,
     Top
+  },
+  created () {
+    this.ajaxFun()
+  },
+  methods: {
+    ajaxFun () {
+      if (this.login === null) {
+        this.$message.warning('请先登录')
+        setTimeout(function () { location.replace(`/login?r=${Math.floor(Math.random() * 10000)}`) }, 1000)
+      }
+    }
   }
 }
 </script>
