@@ -63,22 +63,6 @@
           ></el-input>
         </el-form-item>
         <el-form-item
-          label="密码"
-        >
-          <el-input
-            show-password
-            v-model="form.password"
-          ></el-input>
-        </el-form-item>
-        <el-form-item
-          label="确认密码"
-        >
-            <el-input
-              show-password
-              v-model="form.rePassword"
-            ></el-input>
-        </el-form-item>
-        <el-form-item
           label="手机号"
         >
           <el-input
@@ -87,18 +71,9 @@
           ></el-input>
         </el-form-item>
         <el-form-item
-          label="性别"
-        >
-          <el-input
-            disabled
-            v-model="form.sex"
-          ></el-input>
-        </el-form-item>
-        <el-form-item
           label="邮箱"
         >
           <el-input
-            disabled
             v-model="form.email"
           ></el-input>
         </el-form-item>
@@ -133,9 +108,6 @@ export default {
       form: {
         username: '',
         phone: '',
-        password: '',
-        rePassword: '',
-        sex: '',
         email: ''
       }
     }
@@ -165,28 +137,30 @@ export default {
     handleEdit (row) {
       this.dialogFormVisible = true
       this.form.phone = row.phone
-      this.form.sex = row.sex
       this.form.email = row.email
       this.form.username = row.username
     },
     handleUpdate () {
-      if (this.form.password === this.form.rePassword) {
+      if (this.form.username !== null && this.form.username !== '' &&
+        this.form.email !== null && this.form.email !== ''
+      ) {
         userUpdate({
           phone: this.form.phone,
-          password: this.$md5(this.form.password),
           username: this.form.username,
-          sex: this.form.sex,
           email: this.form.email})
           .then(res => {
             if (res.data.code === 200) {
               this.$message.success(res.data.msg)
               this.dialogFormVisible = false
+              setTimeout(function () { location.reload() }, 1000)
             } else {
               this.$message.error(res.data.msg)
             }
           })
-      } else if (this.form.password !== this.form.rePassword) {
-        this.$message.error('两次输入的密码不一致，请重新输入')
+      } else if (this.form.email === '' || this.form.email === null) {
+        this.$message.error('请填写邮箱')
+      } else if (this.form.username === '' || this.form.username === null) {
+        this.$message.error('请填写用户名')
       }
     }
   }
