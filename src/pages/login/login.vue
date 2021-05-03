@@ -21,6 +21,7 @@
               label="账号"
             >
               <el-input
+                size="mini"
                 v-model="phone"
                 maxlength="11"
                 placeholder="请输入手机号"
@@ -32,8 +33,9 @@
               label="密码"
             >
               <el-input
+                size="mini"
                 v-model="password"
-                show-password
+                type="password"
                 placeholder="请输入密码"
                 @keyup.enter.native="handleLogin"
               ></el-input>
