@@ -35,26 +35,26 @@
                 v-model="password"
                 show-password
                 placeholder="请输入密码"
+                @keyup.enter.native="handleLogin"
               ></el-input>
             </el-form-item>
           </el-row>
           <el-row>
             <el-button
               size="mini"
-              type="primary"
-              class="right"
-              @click="handleLogin"
-            >
-              登录
-            </el-button>
-            <el-button
-              size="mini"
-              style="margin-right: 10%"
               type="success"
               class="right"
               @click="Register"
             >
               注册
+            </el-button>
+            <el-button
+              size="mini"
+              type="primary"
+              class="right login_btn"
+              @click="handleLogin"
+            >
+              登录
             </el-button>
           </el-row>
         </el-form>
