@@ -45,16 +45,9 @@ export const userUpdate = (data = {}) => {
     data
   })
 }
-export const userFind = (data = {}) => {
+export const userFindAll = (data = {}) => {
   return request({
-    url: '/api/user' + data.phone,
-    method: Method.GET,
-    data
-  })
-}
-export const userFindAll = () => {
-  return request({
-    url: '/api/user',
+    url: '/api/user/' + data.pageNo,
     method: Method.GET
   })
 }
