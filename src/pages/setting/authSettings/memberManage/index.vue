@@ -10,7 +10,7 @@
   <div>
     <div>
       <el-table
-        :data="userList"
+        :data="userList.form"
         highlight-current-row
       >
         <el-table-column
@@ -47,6 +47,14 @@
           </template>
         </el-table-column>
       </el-table>
+      <el-pagination
+        @current-change="handleCurrentChange"
+        :total="userList.total"
+        :current-page="userList.current"
+        :page-size="userList.size"
+        layout="total, sizes, prev, pager, next, jumper"
+        :page-sizes="[15]"
+      ></el-pagination>
     </div>
     <el-dialog
       title="编辑用户"
@@ -103,7 +111,14 @@ export default {
   name: 'index',
   data () {
     return {
-      userList: [],
+      userList: {
+        current: 1,
+        orders: [],
+        pages: 0,
+        size: 0,
+        total: 0,
+        form: []
+      },
       dialogFormVisible: false,
       form: {
         username: '',
@@ -117,10 +132,26 @@ export default {
   },
   methods: {
     ajaxFun () {
-      userFindAll()
+      userFindAll({pageNo: this.userList.current})
         .then(res => {
-          this.userList = res.data.result
+          this.userList.current = res.data.result.current
+          this.userList.orders = res.data.result.orders
+          this.userList.pages = res.data.result.pages
+          this.userList.size = res.data.result.size
+          this.userList.total = res.data.result.total
+          this.userList.form = res.data.result.records
           console.log(res.data)
+        })
+    },
+    handleCurrentChange (val) {
+      userFindAll({pageNo: val})
+        .then(res => {
+          this.userList.current = res.data.result.current
+          this.userList.orders = res.data.result.orders
+          this.userList.pages = res.data.result.pages
+          this.userList.size = res.data.result.size
+          this.userList.total = res.data.result.total
+          this.userList.form = res.data.result.records
         })
     },
     handleDelete (row) {
