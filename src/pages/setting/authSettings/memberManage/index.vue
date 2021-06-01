@@ -27,8 +27,12 @@
         ></el-table-column>
         <el-table-column
           label="性别"
-          prop="sex"
-        ></el-table-column>
+          prop="gender"
+        >
+          <template slot-scope="scope">
+            <span>{{scope.row.gender === '2' ? '保密' : scope.row.gender === '0' ? '女' :'男'}}</span>
+          </template>
+        </el-table-column>
         <el-table-column
           label="操作"
           fixed="right"
@@ -140,7 +144,7 @@ export default {
           this.userList.size = res.data.result.size
           this.userList.total = res.data.result.total
           this.userList.form = res.data.result.records
-          console.log(res.data)
+          console.log(this.userList.form.gender)
         })
     },
     handleCurrentChange (val) {
