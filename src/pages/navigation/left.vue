@@ -11,6 +11,7 @@
     <el-row
       class="el_col"
       :style="{width: $store.state.types.type === 1 ? '201px!important' : '64px!important'}"
+      style="position: fixed"
     >
       <el-col
         :span=24
