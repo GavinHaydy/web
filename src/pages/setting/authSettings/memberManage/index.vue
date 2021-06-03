@@ -53,11 +53,12 @@
       </el-table>
       <el-pagination
         @current-change="handleCurrentChange"
+        @size-change="handleSizeChange"
         :total="userList.total"
         :current-page="userList.current"
-        :page-size="userList.size"
+        :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
-        :page-sizes="[15]"
+        :page-sizes=pageSizes
       ></el-pagination>
     </div>
     <el-dialog
@@ -115,6 +116,9 @@ export default {
   name: 'index',
   data () {
     return {
+      pageNo: 1,
+      pageSizes: [10, 15, 30, 50],
+      pageSize: 15,
       userList: {
         current: 1,
         orders: [],
@@ -136,7 +140,9 @@ export default {
   },
   methods: {
     ajaxFun () {
-      userFindAll({pageNo: this.userList.current})
+      userFindAll({
+        'pageNo': this.userList.current,
+        'pageSize': this.pageSize})
         .then(res => {
           this.userList.current = res.data.result.current
           this.userList.orders = res.data.result.orders
@@ -148,7 +154,24 @@ export default {
         })
     },
     handleCurrentChange (val) {
-      userFindAll({pageNo: val})
+      this.pageNo = val
+      userFindAll({
+        'pageNo': val,
+        'pageSize': this.pageSize})
+        .then(res => {
+          this.userList.current = res.data.result.current
+          this.userList.orders = res.data.result.orders
+          this.userList.pages = res.data.result.pages
+          this.userList.size = res.data.result.size
+          this.userList.total = res.data.result.total
+          this.userList.form = res.data.result.records
+        })
+    },
+    handleSizeChange (val) {
+      this.pageSize = val
+      userFindAll({
+        'pageNo': this.userList.current,
+        'pageSize': val})
         .then(res => {
           this.userList.current = res.data.result.current
           this.userList.orders = res.data.result.orders
