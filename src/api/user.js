@@ -47,7 +47,11 @@ export const userUpdate = (data = {}) => {
 }
 export const userFindAll = (data = {}) => {
   return request({
-    url: '/api/user/' + data.pageNo,
-    method: Method.GET
+    header: {
+      'Content-Type': 'application/json'
+    },
+    url: '/api/user/list',
+    method: Method.POST,
+    data
   })
 }
