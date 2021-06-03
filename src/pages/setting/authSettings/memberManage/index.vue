@@ -9,6 +9,67 @@
 <template>
   <div>
     <div>
+      <el-card>
+        <el-form
+          inline="inline"
+        >
+          <el-row>
+            <el-col
+              :span="8">
+              <el-form-item label="手机号">
+                <el-input
+                  v-model="phone_s"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col
+              :span="8">
+              <el-form-item label="用户名">
+                <el-input
+                  v-model="username_s"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col
+              :span="8">
+              <el-form-item label="邮箱">
+                <el-input
+                  v-model="email_s"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col
+              :span="8">
+              <el-form-item label="性别">
+                <el-select
+                  placeholder="请选择"
+                  clearable
+                  v-model="gender"
+                >
+                  <el-option
+                    v-for="(idea, index) in gender_s"
+                    :key="index"
+                    :label="idea.label"
+                    :value="idea.value"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-button
+              class="right_btn"
+              type="danger"
+              @click="empty"
+            >重置</el-button>
+            <el-button
+            @click="ajaxFun"
+            class="right_btn"
+            type="primary">查询</el-button>
+          </el-row>
+        </el-form>
+      </el-card>
+    </div>
+    <div>
       <el-table
         :data="userList.form"
         highlight-current-row
@@ -132,7 +193,17 @@ export default {
         username: '',
         phone: '',
         email: ''
-      }
+      },
+      phone_s: '',
+      email_s: '',
+      gender: '',
+      gender_s: [
+        {value: 0, label: '女'},
+        {value: 1, label: '男'},
+        {value: 2, label: '保密'}
+      ],
+      username_s: '',
+      search_form: {}
     }
   },
   created () {
@@ -140,8 +211,10 @@ export default {
   },
   methods: {
     ajaxFun () {
+      this.handleSearch()
       userFindAll({
-        'pageNo': this.userList.current,
+        'search': this.search_form,
+        'pageNo': 1,
         'pageSize': this.pageSize})
         .then(res => {
           this.userList.current = res.data.result.current
@@ -150,12 +223,27 @@ export default {
           this.userList.size = res.data.result.size
           this.userList.total = res.data.result.total
           this.userList.form = res.data.result.records
-          console.log(this.userList.form.gender)
         })
+    },
+    handleSearch () {
+      this.search_form = {}
+      if (this.phone_s !== null && this.phone_s !== '') {
+        this.search_form['phone'] = this.phone_s
+      }
+      if (this.gender !== null && this.gender !== '') {
+        this.search_form['gender'] = this.gender
+      }
+      if (this.username_s !== null && this.username_s !== '') {
+        this.search_form['username'] = this.username_s
+      }
+      if (this.email_s !== null && this.email_s !== '') {
+        this.search_form['email'] = this.email_s
+      }
     },
     handleCurrentChange (val) {
       this.pageNo = val
       userFindAll({
+        'search': this.search_form,
         'pageNo': val,
         'pageSize': this.pageSize})
         .then(res => {
@@ -170,7 +258,8 @@ export default {
     handleSizeChange (val) {
       this.pageSize = val
       userFindAll({
-        'pageNo': this.userList.current,
+        'search': this.search_form,
+        'pageNo': this.pageNo,
         'pageSize': val})
         .then(res => {
           this.userList.current = res.data.result.current
@@ -220,6 +309,12 @@ export default {
       } else if (this.form.username === '' || this.form.username === null) {
         this.$message.error('请填写用户名')
       }
+    },
+    empty () {
+      this.gender = ''
+      this.username_s = ''
+      this.phone_s = ''
+      this.email_s = ''
     }
   }
 }
