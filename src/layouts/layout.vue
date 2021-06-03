@@ -7,7 +7,7 @@
 -->
 <template>
   <div>
-    <Left style="position: fixed"/>
+    <Left/>
     <router-view
       :style="{marginLeft: $store.state.types.type === 1 ? '201px!important' : '64px!important'}"
     />
