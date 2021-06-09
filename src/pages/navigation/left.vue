@@ -80,6 +80,7 @@
 </template>
 
 <script>
+import {getMenu} from '../../api/user'
 import setting from '../../router/settings'
 import Top from './top'
 export default {
@@ -89,6 +90,21 @@ export default {
     return {
       routes: {
         setting
+      },
+      menu: {}
+    }
+  },
+  created () {
+    this.ajaxFun()
+  },
+  methods: {
+    ajaxFun () {
+      if (localStorage.getItem('is_login')) {
+        getMenu({
+          phone: localStorage.getItem('phone')
+        }).then(res => {
+          this.menu = res
+        })
       }
     }
   }
