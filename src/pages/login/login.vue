@@ -95,6 +95,7 @@ export default {
               const token = response.data.token
               console.log(token)
               localStorage.setItem('token', token)
+              localStorage.setItem('phone', this.phone)
               localStorage.setItem('username', response.data.username)
               localStorage.setItem('is_login', 'true')
               location.replace('/')
