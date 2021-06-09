@@ -55,3 +55,13 @@ export const userFindAll = (data = {}) => {
     data
   })
 }
+export const getMenu = (data = {}) => {
+  return request({
+    header: {
+      'Content-Type': 'application/json'
+    },
+    url: '/api/auth/list',
+    method: Method.POST,
+    data
+  })
+}
