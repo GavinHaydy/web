@@ -37,7 +37,7 @@
           </el-menu-item>
           <el-submenu
             v-if="menu.result"
-            :index="menu.result.url"
+            :index="'/' + menu.result.url"
           >
             <template
               slot="title"
@@ -53,14 +53,14 @@
             </template>
             <el-submenu
               v-if="menu.child.result"
-              :index="menu.result.url + '/' + menu.child.result.url"
+              :index="'/' + menu.result.url + '/' + menu.child.result.url"
             >
               <template
                 slot="title"
               >{{menu.child.result.permissionName}}</template>
               <el-menu-item
                 v-if="menu.child.child.result"
-                :index="menu.result.url + '/' +menu.child.result.url + '/' + menu.child.child.result.url"
+                :index="'/' + menu.result.url + '/' + menu.child.result.url + '/' + menu.child.child.result.url"
               >
                 {{menu.child.child.result.permissionName}}
               </el-menu-item>
