@@ -74,7 +74,6 @@
     >
       <Top/>
     </div>
-    <p>{{this.menu}}========{{menu.child.child.result}}</p>
   </div>
 </template>
 
