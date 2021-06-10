@@ -36,9 +36,8 @@
             <span>首页</span>
           </el-menu-item>
           <el-submenu
-            v-for="(idea, index) in routes"
-            :key="index"
-            :index="idea.path"
+            v-if="menu.result"
+            :index="menu.result.url"
           >
             <template
               slot="title"
@@ -48,24 +47,23 @@
                 class="icon" aria-hidden="true"
               >
                 <use
-                  :href="idea.meta.icon"></use>
+                  :href="menu.result.icon"></use>
               </svg>
-              <span>{{idea.meta.title}}</span>
+              <span>{{menu.result.permissionName}}</span>
             </template>
             <el-submenu
-              :index="idea.path + '/' + idea2.path"
-              v-if="idea.meta.layer === 3 "
-              v-for="(idea2, index) in idea.children"
-              :key="index"
+              v-if="menu.child.result"
+              :index="menu.result.url + '/' + menu.child.result.url"
             >
               <template
                 slot="title"
-              >{{idea2.meta.title}}</template>
+              >{{menu.child.result.permissionName}}</template>
               <el-menu-item
-                v-for="(idea3, index) in idea2.children"
-                :key="index"
-                :index="idea.path + '/' + idea2.path + '/' + idea3.path"
-              >{{idea3.meta.title}}</el-menu-item>
+                v-if="menu.child.child.result"
+                :index="menu.result.url + '/' +menu.child.result.url + '/' + menu.child.child.result.url"
+              >
+                {{menu.child.child.result.permissionName}}
+              </el-menu-item>
             </el-submenu>
           </el-submenu>
         </el-menu>
@@ -76,6 +74,7 @@
     >
       <Top/>
     </div>
+    <p>{{this.menu}}========{{menu.child.child.result}}</p>
   </div>
 </template>
 
@@ -91,7 +90,15 @@ export default {
       routes: {
         setting
       },
-      menu: {}
+      menu: {
+        result: {},
+        child: {
+          result: {},
+          child: {
+            result: {}
+          }
+        }
+      }
     }
   },
   created () {
@@ -103,7 +110,17 @@ export default {
         getMenu({
           phone: localStorage.getItem('phone')
         }).then(res => {
-          this.menu = res
+          if (res.data.code === 200 && res.data.child.child.result !== {}) {
+            this.menu.child.child.result = res.data.child.child.result
+            this.menu.child.result = res.data.child.result
+            this.menu.result = res.data.result
+          }
+          if (res.data.code === 200 && res.data.child.result !== {}) {
+            this.menu.child.result = res.data.child.result
+            this.menu.result = res.data.result
+          } else {
+            this.menu.result = res.data.result
+          }
         })
       }
     }
