@@ -8,6 +8,7 @@
 */
 import memberManage from '../pages/setting/authSettings/memberManage'
 import Default from '../pages/Default'
+import roleManage from '@/pages/setting/authSettings/roleManage'
 const setting = {
   path: '/setting',
   meta: {title: '系统设置', icon: '#i-system', layer: 3},
@@ -22,7 +23,12 @@ const setting = {
       path: 'memberManage',
       meta: {title: '人员管理'},
       component: memberManage
-    }]
+    }, {
+      path: 'roleManage',
+      meta: {title: '角色管理'},
+      component: roleManage
+    }
+    ]
   }]
 }
 export default setting
