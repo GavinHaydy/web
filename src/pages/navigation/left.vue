@@ -36,8 +36,10 @@
             <span>首页</span>
           </el-menu-item>
           <el-submenu
+            v-for="(ideaTop, index) in menu.result"
+            :key="index"
             v-if="menu.result"
-            :index="'/' + menu.result.url"
+            :index="'/' + ideaTop.url"
           >
             <template
               slot="title"
@@ -47,22 +49,26 @@
                 class="icon" aria-hidden="true"
               >
                 <use
-                  :href="menu.result.icon"></use>
+                  :href="ideaTop.icon"></use>
               </svg>
-              <span>{{menu.result.permissionName}}</span>
+              <span>{{ideaTop.permissionName}}</span>
             </template>
             <el-submenu
+              v-for="(ideaChild, index) in menu.child.result"
+              :key="index"
               v-if="menu.child.result"
-              :index="'/' + menu.result.url + '/' + menu.child.result.url"
+              :index="'/' + ideaTop.url + '/' + ideaChild.url"
             >
               <template
                 slot="title"
-              >{{menu.child.result.permissionName}}</template>
+              >{{ideaChild.permissionName}}</template>
               <el-menu-item
+                v-for="(idea, index) in menu.child.child.result"
+                :key="index"
                 v-if="menu.child.child.result"
-                :index="'/' + menu.result.url + '/' + menu.child.result.url + '/' + menu.child.child.result.url"
+                :index="'/' + ideaTop.url + '/' + ideaChild.url + '/' + idea.url"
               >
-                {{menu.child.child.result.permissionName}}
+                {{idea.permissionName}}
               </el-menu-item>
             </el-submenu>
           </el-submenu>
