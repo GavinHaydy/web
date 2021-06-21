@@ -36,10 +36,10 @@
             <span>首页</span>
           </el-menu-item>
           <el-submenu
-            v-for="(ideaTop, index) in menu.result"
+            v-for="(parentMenu, index) in menu.result"
             :key="index"
             v-if="menu.result"
-            :index="'/' + ideaTop.url"
+            :index="'/' + parentMenu.url"
           >
             <template
               slot="title"
@@ -49,26 +49,26 @@
                 class="icon" aria-hidden="true"
               >
                 <use
-                  :href="ideaTop.icon"></use>
+                  :href="parentMenu.icon"></use>
               </svg>
-              <span>{{ideaTop.permissionName}}</span>
+              <span>{{parentMenu.permissionName}}</span>
             </template>
             <el-submenu
-              v-for="(ideaChild, index) in menu.child.result"
+              v-for="(Menu, index) in menu.child.result"
               :key="index"
               v-if="menu.child.result"
-              :index="'/' + ideaTop.url + '/' + ideaChild.url"
+              :index="'/' + parentMenu.url + '/' + Menu.url"
             >
               <template
                 slot="title"
-              >{{ideaChild.permissionName}}</template>
+              >{{Menu.permissionName}}</template>
               <el-menu-item
-                v-for="(idea, index) in menu.child.child.result"
+                v-for="(childMenu, index) in menu.child.child.result"
                 :key="index"
                 v-if="menu.child.child.result"
-                :index="'/' + ideaTop.url + '/' + ideaChild.url + '/' + idea.url"
+                :index="'/' + parentMenu.url + '/' + Menu.url + '/' + childMenu.url"
               >
-                {{idea.permissionName}}
+                {{childMenu.permissionName}}
               </el-menu-item>
             </el-submenu>
           </el-submenu>
