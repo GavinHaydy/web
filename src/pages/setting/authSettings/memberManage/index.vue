@@ -46,10 +46,10 @@
                   v-model="gender"
                 >
                   <el-option
-                    v-for="(idea, index) in gender_s"
+                    v-for="(gender, index) in gender_s"
                     :key="index"
-                    :label="idea.label"
-                    :value="idea.value"
+                    :label="gender.label"
+                    :value="gender.value"
                   ></el-option>
                 </el-select>
               </el-form-item>
