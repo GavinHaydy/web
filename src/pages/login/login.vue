@@ -15,14 +15,17 @@
         </div>
         <el-form
           inline="inline"
+          :model="form"
+          :rules="rules"
         >
           <el-row>
             <el-form-item
               label="账号"
+              prop="phone"
             >
               <el-input
                 size="mini"
-                v-model="phone"
+                v-model="form.phone"
                 maxlength="11"
                 placeholder="请输入手机号"
               ></el-input>
@@ -31,10 +34,11 @@
           <el-row>
             <el-form-item
               label="密码"
+              prop="password"
             >
               <el-input
                 size="mini"
-                v-model="password"
+                v-model="form.password"
                 type="password"
                 placeholder="请输入密码"
                 @keyup.enter.native="handleLogin"
@@ -71,40 +75,49 @@ import {userLogin} from '../../api/user'
 export default {
   name: 'login',
   data () {
+    const checkPhone = (rule, value, callback) => {
+      if (!this.$checkPhone.test(value)) {
+        callback(new Error('请填写正确的手机号'))
+      }
+    }
+    const checkPassword = (rule, value, callback) => {
+      if (!this.$checkPassword.test(value)) {
+        callback(new Error('密码8-20位，支持英文、数字'))
+      }
+    }
     return {
       register: '/register',
-      phone: '',
-      password: '',
-      res: ''
+      form: {
+        phone: '',
+        password: ''
+      },
+      rules: {
+        phone: [{validator: checkPhone, trigger: 'blur'}],
+        password: [{validator: checkPassword, trigger: 'blur'}]
+      }
     }
   },
   methods: {
     handleLogin () {
-      if (!/^1[0-9]{10}$/.test(this.phone)) {
-        this.$message.error('手机号格式不对，请重新输入')
-        this.phone = this.password = ''
-      } else {
-        const md5Password = this.$md5(this.password)
-        userLogin({
-          'phone': this.phone,
-          'password': md5Password
+      const md5Password = this.$md5(this.form.password)
+      userLogin({
+        'phone': this.form.phone,
+        'password': md5Password
+      })
+        .then(response => {
+          if (response.data.code === 200) {
+            const token = response.data.token
+            console.log(token)
+            localStorage.setItem('token', token)
+            localStorage.setItem('phone', this.form.phone)
+            localStorage.setItem('username', response.data.username)
+            localStorage.setItem('is_login', 'true')
+            location.replace('/')
+          } else {
+            this.$message.error(response.data.msg)
+            setTimeout(function () { location.reload() }, 1500) // 一秒后刷新页面
+          }
         })
-          .then(response => {
-            if (response.data.code === 200) {
-              this.res = response.data.token
-              const token = response.data.token
-              console.log(token)
-              localStorage.setItem('token', token)
-              localStorage.setItem('phone', this.phone)
-              localStorage.setItem('username', response.data.username)
-              localStorage.setItem('is_login', 'true')
-              location.replace('/')
-            } else {
-              this.$message.error(response.data.msg)
-              setTimeout(function () { location.reload() }, 1500) // 一秒后刷新页面
-            }
-          })
-      }
     },
     Register () {
       location.replace(this.register)
