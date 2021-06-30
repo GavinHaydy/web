@@ -9,8 +9,10 @@ import './assets/css/base.css'
 import md5 from 'js-md5'
 import '../src/assets/icon/iconfont'
 import store from './store'
+import G from '../src/global'
 
 Vue.use(ElementUI)
+Vue.use(G)
 Vue.prototype.$md5 = md5
 Vue.prototype.$store = store
 Vue.config.productionTip = false
