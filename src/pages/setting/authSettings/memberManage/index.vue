@@ -274,9 +274,9 @@ export default {
       userDelete({phone: row.phone})
         .then(res => {
           if (res.data.code !== 200) {
-            this.$message.error(res.data.msg)
+            this.$message.error(res.data.message)
           } else {
-            this.$message.success(res.data.msg)
+            this.$message.success(res.data.message)
           }
           setTimeout(function () { location.reload() }, 1800)
         })
@@ -293,15 +293,15 @@ export default {
       ) {
         userUpdate({
           phone: this.form.phone,
-          username: this.form.username,
+          username: this.form.usrername,
           email: this.form.email})
           .then(res => {
             if (res.data.code === 200) {
-              this.$message.success(res.data.msg)
+              this.$message.success(res.data.message)
               this.dialogFormVisible = false
               setTimeout(function () { location.reload() }, 1000)
             } else {
-              this.$message.error(res.data.msg)
+              this.$message.error(res.data.message)
             }
           })
       } else if (this.form.email === '' || this.form.email === null) {
