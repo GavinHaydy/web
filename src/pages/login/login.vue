@@ -105,16 +105,15 @@ export default {
         'password': md5Password
       })
         .then(response => {
-          if (response.data.code === 200) {
-            const token = response.data.token
-            console.log(token)
+          if (response.data.message === '登录成功') {
+            const token = response.data.result.token
             localStorage.setItem('token', token)
             localStorage.setItem('phone', this.form.phone)
-            localStorage.setItem('username', response.data.username)
+            localStorage.setItem('username', response.data.result.username)
             localStorage.setItem('is_login', 'true')
             location.replace('/')
           } else {
-            this.$message.error(response.data.msg)
+            this.$message.error(response.data.message)
             setTimeout(function () { location.reload() }, 1500) // 一秒后刷新页面
           }
         })
