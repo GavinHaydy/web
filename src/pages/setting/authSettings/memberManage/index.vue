@@ -211,69 +211,62 @@ export default {
   },
   methods: {
     ajaxFun () {
-      this.handleSearch()
       userFindAll({
-        'search': this.search_form,
+        'phone': this.phone_s,
+        'email': this.email_s,
+        'username': this.username_s,
+        'gender': this.gender,
         'pageNo': 1,
         'pageSize': this.pageSize})
         .then(res => {
-          this.userList.current = res.data.result.current
+          this.userList.current = res.data.result.pageNum
           this.userList.orders = res.data.result.orders
           this.userList.pages = res.data.result.pages
           this.userList.size = res.data.result.size
           this.userList.total = res.data.result.total
-          this.userList.form = res.data.result.records
+          this.userList.form = res.data.result.list
         })
-    },
-    handleSearch () {
-      this.search_form = {}
-      if (this.phone_s !== null && this.phone_s !== '') {
-        this.search_form['phone'] = this.phone_s
-      }
-      if (this.gender !== null && this.gender !== '') {
-        this.search_form['gender'] = this.gender
-      }
-      if (this.username_s !== null && this.username_s !== '') {
-        this.search_form['username'] = this.username_s
-      }
-      if (this.email_s !== null && this.email_s !== '') {
-        this.search_form['email'] = this.email_s
-      }
     },
     handleCurrentChange (val) {
       this.pageNo = val
       userFindAll({
-        'search': this.search_form,
+        'phone': this.phone_s,
+        'email': this.email_s,
+        'username': this.username_s,
+        'gender': this.gender,
         'pageNo': val,
         'pageSize': this.pageSize})
         .then(res => {
-          this.userList.current = res.data.result.current
+          this.userList.current = res.data.result.pageNum
           this.userList.orders = res.data.result.orders
           this.userList.pages = res.data.result.pages
           this.userList.size = res.data.result.size
           this.userList.total = res.data.result.total
-          this.userList.form = res.data.result.records
+          this.userList.form = res.data.result.list
         })
     },
     handleSizeChange (val) {
       this.pageSize = val
       userFindAll({
-        'search': this.search_form,
+        'phone': this.phone_s,
+        'email': this.email_s,
+        'username': this.username_s,
+        'gender': this.gender,
         'pageNo': this.pageNo,
         'pageSize': val})
         .then(res => {
-          this.userList.current = res.data.result.current
+          this.userList.current = res.data.result.pageNum
           this.userList.orders = res.data.result.orders
           this.userList.pages = res.data.result.pages
           this.userList.size = res.data.result.size
           this.userList.total = res.data.result.total
-          this.userList.form = res.data.result.records
+          this.userList.form = res.data.result.list
         })
     },
     handleDelete (row) {
       userDelete({phone: row.phone})
         .then(res => {
-          if (res.data.code !== 200) {
+          if (res.data.success === false) {
             this.$message.error(res.data.message)
           } else {
             this.$message.success(res.data.message)
