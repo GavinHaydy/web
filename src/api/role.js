@@ -1,9 +1,9 @@
 /*
- * @Description:role.js
+ * @Description:角色模块接口
  * @CreatedBy:WebStorm
  * @Author: the-ruffian
  * @Date: 2021-06-15 09:03
- * @LastEditTime: 2021-06-15 09:03
+ * @LastEditTime: 2021-07-15 23:25:26
  * @LastEditors: the-ruffian
 */
 import request, {Method} from '../utils/request'
@@ -39,7 +39,7 @@ export const updateRole = (data = {}) => {
 }
 export const deleteRole = (data = {}) => {
   return request({
-    url: '/api/role/delete/' + data.roleName,
+    url: '/api/role/delete/',
     method: Method.DELETE,
     data
   })
