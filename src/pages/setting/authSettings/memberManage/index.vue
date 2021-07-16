@@ -91,7 +91,7 @@
           prop="gender"
         >
           <template slot-scope="scope">
-            <span>{{scope.row.gender === '2' ? '保密' : scope.row.gender === '0' ? '女' :'男'}}</span>
+            <span>{{scope.row.gender === 2 ? '保密' : scope.row.gender === 0 ? '女' :'男'}}</span>
           </template>
         </el-table-column>
         <el-table-column
