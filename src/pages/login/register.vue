@@ -1,10 +1,10 @@
 <!--
- * @Description:register.vue
+ * @Description:注册页
  * @CreatedBy:WebStorm
- * @Author: BugP
+ * @Author: the-ruffian
  * @Date: 2021-03-10 23:52
- * @LastEditTime: 2021-03-10 23:52
- * @LastEditors: BugP
+ * @LastEditTime: 2021-7-16 17:33:12
+ * @LastEditors: the-ruffian
 -->
 <template>
   <div
@@ -98,6 +98,10 @@
           type="primary"
           @click="handleClick"
         >注册</el-button>
+        <el-button
+          type="primary"
+          @click="handleBack"
+        >返回登录页</el-button>
       </el-row>
     </el-form>
   </div>
@@ -152,21 +156,24 @@ export default {
     }
   },
   methods: {
+    handleBack () {
+      location.replace('/login')
+    },
     handleClick () {
-      const md5Password = this.$md5(this.password)
+      const md5Password = this.$md5(this.ruleForm.password)
       userRegister({
-        'username': this.user,
-        'phone': this.phone,
-        'gender': this.gender,
+        'username': this.ruleForm.user,
+        'phone': this.ruleForm.phone,
+        'gender': this.ruleForm.genderI,
         'password': md5Password,
-        'email': this.email
+        'email': this.ruleForm.email
       })
         .then(res => {
-          if (res.data.code === 200) {
-            this.$message.success(res.data.msg)
+          if (res.data.success === true) {
+            this.$message.success(res.data.message)
             setTimeout(function () { location.replace('/login') }, 2000)
           } else {
-            this.message.error(res.data.msg)
+            this.message.error(res.data.message)
           }
         })
     }
