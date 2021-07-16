@@ -199,7 +199,6 @@ export default {
         size: 0,
         total: 0
       },
-      search: {},
       roleName_s: '',
       note_s: '',
       add_form: {
@@ -220,31 +219,22 @@ export default {
   },
   methods: {
     ajaxFun () {
-      this.handleSearch()
       roleList({
-        'search': this.search,
+        'roleName': this.roleName_s,
+        'note': this.note_s,
         'pageNo': 1,
         'pageSize': 10
       })
         .then(res => {
           this.allRole.orders = res.data.result.orders
-          this.allRole.form = res.data.result.records
-          this.allRole.current = res.data.result.current
+          this.allRole.form = res.data.result.list
+          this.allRole.current = res.data.result.pageNum
           this.allRole.pages = res.data.result.pages
           this.allRole.size = res.data.result.size
           this.allRole.total = res.data.result.total
         })
     },
     parseTime,
-    handleSearch () {
-      this.search = {}
-      if (this.roleName_s !== null && this.roleName_s !== '') {
-        this.search['roleName'] = this.roleName_s
-      }
-      if (this.note_s !== null && this.note_s !== '') {
-        this.search['note'] = this.note_s
-      }
-    },
     empty () {
       this.note_s = ''
       this.roleName_s = ''
@@ -252,7 +242,8 @@ export default {
     handleCurrentChange (val) {
       this.pageNo = val
       roleList({
-        'search': this.search_form,
+        'roleName': this.roleName_s,
+        'note': this.note_s,
         'pageNo': val,
         'pageSize': this.pageSize})
         .then(res => {
@@ -267,7 +258,8 @@ export default {
     handleSizeChange (val) {
       this.pageSize = val
       roleList({
-        'search': this.search,
+        'roleName': this.roleName_s,
+        'note': this.note_s,
         'pageNo': this.pageNo,
         'pageSize': val})
         .then(res => {
@@ -285,12 +277,12 @@ export default {
         'note': this.add_form.note
       })
         .then(res => {
-          if (res.data.code === 200) {
-            this.$message.success(res.data.msg)
+          if (res.data.success === true) {
+            this.$message.success(res.data.message)
             this.addDialogFormVisible = false
             setTimeout(function () { location.reload() }, 1000)
           } else {
-            this.$message.error(res.data.msg)
+            this.$message.error(res.data.message)
           }
         })
     },
@@ -307,16 +299,16 @@ export default {
       if (this.editForm.roleName !== null && this.editForm.roleName !== '') {
         updateRole({
           'oldName': this.editForm.oldName,
-          'roleName': this.editForm.roleName,
+          'newName': this.editForm.roleName,
           'note': this.editForm.note
         })
           .then(res => {
-            if (res.data.code === 200) {
-              this.$message.success(res.data.msg)
+            if (res.data.success === true) {
+              this.$message.success(res.data.message)
               this.putDialogFormVisible = false
               setTimeout(function () { location.reload() }, 1000)
             } else {
-              this.$message.error(res.data.msg)
+              this.$message.error(res.data.message)
             }
           })
       } else {
@@ -328,7 +320,7 @@ export default {
         'roleName': row.roleName
       })
         .then(res => {
-          this.$message.success(res.data.msg)
+          this.$message.success(res.data.message())
           setTimeout(function () { location.reload() }, 1000)
         })
     }
