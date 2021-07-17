@@ -3,7 +3,7 @@
  * @CreatedBy:WebStorm
  * @Author: the-ruffian
  * @Date: 2021-03-16 09:21
- * @LastEditTime: 2021-04-11 19:15:07
+ * @LastEditTime: 2021-07-17 17:44:52
  * @LastEditors: the-ruffian
 -->
 <template>
@@ -105,13 +105,13 @@ export default {
         'password': md5Password
       })
         .then(response => {
-          if (response.data.message === '登录成功') {
+          if (response.data.success === true) {
             const token = response.data.result.token
             localStorage.setItem('token', token)
             localStorage.setItem('phone', this.form.phone)
             localStorage.setItem('username', response.data.result.username)
             localStorage.setItem('is_login', 'true')
-            location.replace('/')
+            location.replace('/index')
           } else {
             this.$message.error(response.data.message)
             setTimeout(function () { location.reload() }, 1500) // 一秒后刷新页面
