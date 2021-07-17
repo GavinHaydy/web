@@ -1,9 +1,9 @@
 <!--
- * @Description:index.vue
+ * @Description:人员管理
  * @CreatedBy:WebStorm
  * @Author: the-ruffian
  * @Date: 2021-04-09 22:38
- * @LastEditTime: 2021-04-11 21:56:35
+ * @LastEditTime: 2021-07-17 13:38:28
  * @LastEditors: the-ruffian
 -->
 <template>
@@ -92,6 +92,13 @@
         >
           <template slot-scope="scope">
             <span>{{scope.row.gender === 2 ? '保密' : scope.row.gender === 0 ? '女' :'男'}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
+          label="角色"
+          prop="roleName">
+          <template slot-scope="scope">
+            <span>{{scope.row.roleName === null ? '-' : scope.row.roleName}}</span>
           </template>
         </el-table-column>
         <el-table-column
@@ -289,7 +296,7 @@ export default {
           username: this.form.usrername,
           email: this.form.email})
           .then(res => {
-            if (res.data.code === 200) {
+            if (res.data.success === true) {
               this.$message.success(res.data.message)
               this.dialogFormVisible = false
               setTimeout(function () { location.reload() }, 1000)
