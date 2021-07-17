@@ -3,7 +3,7 @@
  * @CreatedBy:WebStorm
  * @Author: the-ruffian
  * @Date: 2021-06-15 09:23
- * @LastEditTime: 2021-06-15 09:23
+ * @LastEditTime: 2021-07-17 15:52:01
  * @LastEditors: the-ruffian
 -->
 <template>
@@ -63,8 +63,8 @@
         <el-table-column
           label="更新时间"
           prop="updateTime">
-          <template slot-scope="scope" v-if="scope.row.updateTime > 0">
-            {{parseTime(scope.row.updateTime)}}
+          <template slot-scope="scope">
+            {{scope.row.updateTime === null ? '-' : parseTime(scope.row.updateTime)}}
           </template>
         </el-table-column>
         <el-table-column
