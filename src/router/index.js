@@ -2,26 +2,27 @@
  * @Description: 路由
  * @Author: zhu
  * @Date: 2020-12-31 15:29:35
- * @LastEditTime: 2021-6-9 09:17:53
+ * @LastEditTime: 2021-07-17 17:46:15
  * @LastEditors: the-ruffian
  */
 import Vue from 'vue'
 import Router from 'vue-router'
 import {Layout} from '../layouts'
 import setting from './settings'
+import Default from '../pages/Default'
 Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/index',
       name: 'index',
       component: Layout,
-      redirect: '/hw',
+      redirect: '/home',
       children: [
         setting,
         {
-          path: '/hw',
+          path: '/home',
           name: 'HelloWorld',
           component: () => import('@/components/HelloWorld/')
         }
@@ -33,9 +34,16 @@ export default new Router({
       component: () => import('@/pages/login/register/')
     },
     {
-      path: '/login',
-      name: '登录',
-      component: () => import('@/pages/login/login/')
+      path: '/',
+      redirect: '/login',
+      component: Default,
+      children: [
+        {
+          path: '/login',
+          name: '登录',
+          component: () => import('@/pages/login/login/')
+        }
+      ]
     },
     {
       path: '*',
