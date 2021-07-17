@@ -3,7 +3,7 @@
  * @CreatedBy:WebStorm
  * @Author: the-ruffian
  * @Date: 2021-04-09 22:38
- * @LastEditTime: 2021-07-17 13:38:28
+ * @LastEditTime: 2021-07-17 14:32:24
  * @LastEditors: the-ruffian
 -->
 <template>
@@ -102,6 +102,13 @@
           </template>
         </el-table-column>
         <el-table-column
+          label="最后登录时间"
+          prop="loginTime">
+          <template slot-scope="scope">
+            <span>{{scope.row.loginTime === null ? '-' : parseTime(scope.row.loginTime)}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column
           label="操作"
           fixed="right"
         >
@@ -179,6 +186,7 @@
 
 <script>
 import {userDelete, userFindAll, userUpdate} from '../../../../api/user'
+import {parseTime} from '../../../../utils/parseTime'
 
 export default {
   name: 'index',
@@ -315,7 +323,8 @@ export default {
       this.username_s = ''
       this.phone_s = ''
       this.email_s = ''
-    }
+    },
+    parseTime
   }
 }
 </script>
