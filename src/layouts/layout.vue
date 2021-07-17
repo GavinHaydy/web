@@ -2,7 +2,7 @@
  * @Description: layout
  * @Author: zhu
  * @Date: 2021-01-04 10:03:14
- * @LastEditTime: 2021-01-04 11:36:39
+ * @LastEditTime: 2021-07-17 17:45:25
  * @LastEditors: zhu
 -->
 <template>
@@ -33,7 +33,7 @@ export default {
     ajaxFun () {
       if (this.login === null) {
         this.$message.warning('请先登录')
-        setTimeout(function () { location.replace(`/login?r=${Math.floor(Math.random() * 10000)}`) }, 1000)
+        setTimeout(function () { location.replace(`/?r=${Math.floor(Math.random() * 10000)}`) }, 1000)
       }
     }
   }
