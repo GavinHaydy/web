@@ -1,9 +1,9 @@
 <!--
- * @Description:left.vue
+ * @Description:左边导航菜单
  * @CreatedBy:WebStorm
  * @Author: the-ruffian
  * @Date: 2021-04-08 16:13
- * @LastEditTime: 2021-4-8 17:25:13
+ * @LastEditTime: 2021-07-18 19:56:23
  * @LastEditors: the-ruffian
 -->
 <template>
@@ -36,9 +36,9 @@
             <span>首页</span>
           </el-menu-item>
           <el-submenu
-            v-for="(parentMenu, index) in menu.result"
+            v-for="(parentMenu, index) in menu"
             :key="index"
-            v-if="menu.result"
+            v-if="menu.result!==null"
             :index="'/' + parentMenu.url"
           >
             <template
@@ -54,18 +54,18 @@
               <span>{{parentMenu.permissionName}}</span>
             </template>
             <el-submenu
-              v-for="(Menu, index) in menu.child.result"
+              v-for="(Menu, index) in parentMenu.children"
               :key="index"
-              v-if="menu.child.result"
+              v-if="parentMenu!==null"
               :index="'/' + parentMenu.url + '/' + Menu.url"
             >
               <template
                 slot="title"
               >{{Menu.permissionName}}</template>
               <el-menu-item
-                v-for="(childMenu, index) in menu.child.child.result"
+                v-for="(childMenu, index) in Menu.children"
                 :key="index"
-                v-if="menu.child.child.result"
+                v-if="childMenu!==null"
                 :index="'/' + parentMenu.url + '/' + Menu.url + '/' + childMenu.url"
               >
                 {{childMenu.permissionName}}
@@ -96,13 +96,6 @@ export default {
         setting
       },
       menu: {
-        result: {},
-        child: {
-          result: {},
-          child: {
-            result: {}
-          }
-        }
       }
     }
   },
@@ -115,16 +108,10 @@ export default {
         getMenu({
           phone: localStorage.getItem('phone')
         }).then(res => {
-          if (res.data.code === 200 && res.data.child.child.result !== {}) {
-            this.menu.child.child.result = res.data.child.child.result
-            this.menu.child.result = res.data.child.result
-            this.menu.result = res.data.result
-          }
-          if (res.data.code === 200 && res.data.child.result !== {}) {
-            this.menu.child.result = res.data.child.result
-            this.menu.result = res.data.result
+          if (res.data.success === true) {
+            this.menu = res.data.result
           } else {
-            this.menu.result = res.data.result
+            this.$message.error('菜单获取失败')
           }
         })
       }
