@@ -29,7 +29,7 @@
           router
         >
           <el-menu-item
-            index="/index">
+            index="/default">
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#i-home"></use>
             </svg>

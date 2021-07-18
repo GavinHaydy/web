@@ -111,7 +111,7 @@ export default {
             localStorage.setItem('phone', this.form.phone)
             localStorage.setItem('username', response.data.result.username)
             localStorage.setItem('is_login', 'true')
-            location.replace('/index')
+            location.replace('/default')
           } else {
             this.$message.error(response.data.message)
             setTimeout(function () { location.reload() }, 1500) // 一秒后刷新页面
