@@ -19,6 +19,13 @@ export default new Router({
       name: 'default',
       component: Layout,
       redirect: '/home',
+      beforeEnter: (to, from, next) => {
+        const loginInfo = localStorage.getItem('token')
+        loginInfo ? next() : next({
+          path: '/login'
+        })
+        next()
+      },
       children: [
         setting,
         {
