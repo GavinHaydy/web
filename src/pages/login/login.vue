@@ -100,23 +100,25 @@ export default {
   methods: {
     handleLogin () {
       const md5Password = this.$md5(this.form.password)
-      userLogin({
-        'phone': this.form.phone,
-        'password': md5Password
-      })
-        .then(response => {
-          if (response.data.success === true) {
-            const token = response.data.result.token
-            localStorage.setItem('token', token)
-            localStorage.setItem('phone', this.form.phone)
-            localStorage.setItem('username', response.data.result.username)
-            localStorage.setItem('is_login', 'true')
-            location.replace('/default')
-          } else {
-            this.$message.error(response.data.message)
-            setTimeout(function () { location.reload() }, 1500) // 一秒后刷新页面
-          }
+      if (this.$checkPassword.test(this.form.password) && this.$checkPhone.test(this.form.phone)) {
+        userLogin({
+          'phone': this.form.phone,
+          'password': md5Password
         })
+          .then(response => {
+            if (response.data.success === true) {
+              const token = response.data.result.token
+              localStorage.setItem('token', token)
+              localStorage.setItem('phone', this.form.phone)
+              localStorage.setItem('username', response.data.result.username)
+              localStorage.setItem('is_login', 'true')
+              location.replace('/default')
+            } else {
+              this.$message.error(response.data.message)
+              setTimeout(function () { location.reload() }, 1500) // 一秒后刷新页面
+            }
+          })
+      }
     },
     Register () {
       location.replace(this.register)
