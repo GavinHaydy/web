@@ -161,21 +161,28 @@ export default {
     },
     handleClick () {
       const md5Password = this.$md5(this.ruleForm.password)
-      userRegister({
-        'username': this.ruleForm.user,
-        'phone': this.ruleForm.phone,
-        'gender': this.ruleForm.genderI,
-        'password': md5Password,
-        'email': this.ruleForm.email
-      })
-        .then(res => {
-          if (res.data.success === true) {
-            this.$message.success(res.data.message)
-            setTimeout(function () { location.replace('/login') }, 2000)
-          } else {
-            this.message.error(res.data.message)
-          }
+      if (
+        this.$checkPassword.test(this.ruleForm.password) &&
+        this.$checkPhone.test(this.ruleForm.phone) &&
+        this.$checkEmail.test(this.ruleForm.email) &&
+        this.ruleForm.rePass === this.ruleForm.password
+      ) {
+        userRegister({
+          'username': this.ruleForm.user,
+          'phone': this.ruleForm.phone,
+          'gender': this.ruleForm.genderI,
+          'password': md5Password,
+          'email': this.ruleForm.email
         })
+          .then(res => {
+            if (res.data.success === true) {
+              this.$message.success(res.data.message)
+              setTimeout(function () { location.replace('/login') }, 2000)
+            } else {
+              this.message.error(res.data.message)
+            }
+          })
+      }
     }
   }
 }
