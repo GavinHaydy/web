@@ -2,7 +2,7 @@
  * @Description: 路由
  * @Author: zhu
  * @Date: 2020-12-31 15:29:35
- * @LastEditTime: 2021-07-18 21:00:18
+ * @LastEditTime: 2021-8-4 21:22:34
  * @LastEditors: the-ruffian
  */
 import Vue from 'vue'
@@ -39,6 +39,11 @@ export default new Router({
       path: '/register',
       name: '注册',
       component: () => import('@/pages/login/register/')
+    },
+    {
+      path: '/forgetPassword',
+      name: '忘记密码',
+      component: () => import('@/pages/login/forgetPassword/')
     },
     {
       path: '/',
