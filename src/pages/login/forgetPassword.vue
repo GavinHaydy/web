@@ -18,17 +18,17 @@
       </div>
       <el-form
         inline="inline"
-        :v-model="form"
+        :model="form"
       >
         <el-row>
           <el-input
-            :v-model="form.tel"
+            v-model="form.tel"
             placeholder="请输入手机号"></el-input>
         </el-row>
         <el-row>
           <el-input
             style="width: 70%"
-            :v-model="form.code"
+            v-model="form.code"
             placeholder="请输入验证码"></el-input>
           <el-button
             style="width: 29%; color: #3a8ee6"
@@ -42,12 +42,12 @@
         </el-row>
         <el-row>
           <el-input
-            :v-model="form.password"
+            v-model="form.password"
             placeholder="请输入密码"></el-input>
         </el-row>
         <el-row>
           <el-input
-            :v-model="form.rePassword"
+            v-model="form.rePassword"
             placeholder="请确认密码"></el-input>
         </el-row>
       </el-form>
