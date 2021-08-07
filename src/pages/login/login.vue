@@ -46,6 +46,11 @@
             </el-form-item>
           </el-row>
           <el-row>
+            <a
+              href="/forgetPassword"
+            >
+              忘记密码
+            </a>
             <el-button
               size="mini"
               type="success"
