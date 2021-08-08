@@ -47,7 +47,7 @@
           </el-row>
           <el-row>
             <a
-              href="/forgetPassword"
+              @click="ForgerPassword"
             >
               忘记密码
             </a>
@@ -92,6 +92,7 @@ export default {
     }
     return {
       register: '/register',
+      forgetPassword: 'forgetPassword',
       form: {
         phone: '',
         password: ''
@@ -127,6 +128,9 @@ export default {
     },
     Register () {
       location.replace(this.register)
+    },
+    ForgerPassword () {
+      location.replace(this.forgetPassword)
     }
   }
 }
