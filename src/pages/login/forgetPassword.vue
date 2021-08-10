@@ -1,9 +1,9 @@
 <!--
- * @Description:forgetPassword.vue
+ * @Description:忘记密码页
  * @CreatedBy:WebStorm
  * @Author: the-ruffian
  * @Date: 2021-08-04 21:10
- * @LastEditTime: 2021-8-5 21:53:09
+ * @LastEditTime: 2021-8-10 21:09:43
  * @LastEditors: the-ruffian
 -->
 <template>
@@ -23,7 +23,6 @@
       >
         <el-row>
           <el-form-item
-            label="账号"
             prop="phone">
             <el-input
               maxlength="11"
@@ -33,28 +32,25 @@
         </el-row>
         <el-row>
           <el-form-item
-            label="验证码"
             prop="code"
           >
             <el-input
               maxlength="4"
-              style="width: 70%"
               v-model="form.code"
               placeholder="请输入验证码"></el-input>
-            <el-button
-              style="width: 29%; color: #3a8ee6"
-              @click="getCode"
-              v-if="show"
-            >获取验证码</el-button>
-            <el-button
-              style="width: 29%; color: #3a8ee6"
-              @click="getCode"
-              v-else>{{this.getCodeTime}}</el-button>
           </el-form-item>
+          <el-button
+            style="background-color: transparent;border: transparent;color: blue"
+            @click="getCode"
+            v-if="show"
+          >获取验证码</el-button>
+          <el-button
+            style="background-color: transparent;border: transparent;color: red"
+            @click="getCode"
+            v-else>{{this.getCodeTime}}</el-button>
         </el-row>
         <el-row>
           <el-form-item
-            label="密码"
             prop="password">
             <el-input
               v-model="form.password"
@@ -63,12 +59,24 @@
         </el-row>
         <el-row>
           <el-form-item
-            label="密码"
             prop="rePassword">
             <el-input
               v-model="form.rePassword"
               placeholder="请确认密码"></el-input>
           </el-form-item>
+        </el-row>
+        <el-row>
+          <el-button
+            type="primary"
+            size="mini"
+            class="right"
+            @click="handleBack"
+          >返回登录页</el-button>
+          <el-button
+            type="primary"
+            size="mini"
+            class="right"
+          >确认修改</el-button>
         </el-row>
       </el-form>
     </el-card>
@@ -119,6 +127,9 @@ export default {
     }
   },
   methods: {
+    handleBack () {
+      location.replace('/login')
+    },
     getCode () {
       this.show = false
       this.timer = setInterval(() => {
@@ -140,10 +151,5 @@ export default {
   height: 45vh;
   margin-top: 30vh;
   margin-left: 32%;
-}
-.el-row{
-  margin-top: 3vh;
-  width: 80%;
-  margin-left: 10%;
 }
 </style>
