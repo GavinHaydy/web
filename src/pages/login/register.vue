@@ -3,7 +3,7 @@
  * @CreatedBy:WebStorm
  * @Author: the-ruffian
  * @Date: 2021-03-10 23:52
- * @LastEditTime: 2021-7-16 17:33:12
+ * @LastEditTime: 2021-8-11 21:59:39
  * @LastEditors: the-ruffian
 -->
 <template>
@@ -131,6 +131,15 @@ export default {
     const checkRepass = (rule, value, callback) => {
       if (value !== this.ruleForm.password) {
         callback(new Error('两次密码不一致，请重新输入'))
+      } else if (!this.$checkPassword.test(value)) {
+        callback(new Error('密码8-20位，支持英文、数字'))
+      }
+    }
+    const checkName = (rule, value, callback) => {
+      if (value === null || value === '') {
+        callback(new Error('昵称不能为空'))
+      } else if (this.$checkNull.test(value)) {
+        callback(new Error('昵称不支持空格'))
       }
     }
     return {
@@ -151,7 +160,8 @@ export default {
         phone: [{validator: checkPhone, trigger: 'blur'}],
         password: [{validator: checkPassword, trigger: 'blur'}],
         email: [{validator: checkEmail, trigger: 'blur'}],
-        rePass: [{validator: checkRepass, trigger: 'blur'}]
+        rePass: [{validator: checkRepass, trigger: 'blur'}],
+        user: [{validator: checkName, trigger: 'blur'}]
       }
     }
   },
