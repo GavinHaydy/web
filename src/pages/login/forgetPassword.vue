@@ -131,14 +131,16 @@ export default {
       location.replace('/login')
     },
     getCode () {
-      this.show = false
-      this.timer = setInterval(() => {
-        this.getCodeTime--
-        if (this.getCodeTime === 0) {
-          this.show = true
-          clearInterval(this.timer)
-        }
-      }, 1000)
+      if (this.show) {
+        this.show = false
+        this.timer = setInterval(() => {
+          this.getCodeTime--
+          if (this.getCodeTime === 0) {
+            this.show = true
+            clearInterval(this.timer)
+          }
+        }, 1000)
+      }
     }
   }
 }
