@@ -3,7 +3,7 @@
  * @CreatedBy:WebStorm
  * @Author: the-ruffian
  * @Date: 2021-08-04 21:10
- * @LastEditTime: 2021-8-10 21:09:43
+ * @LastEditTime: 2021-08-15 20:14:21
  * @LastEditors: the-ruffian
 -->
 <template>
@@ -23,11 +23,11 @@
       >
         <el-row>
           <el-form-item
-            prop="phone">
+            prop="email">
             <el-input
-              maxlength="11"
-              v-model="form.phone"
-              placeholder="请输入手机号"></el-input>
+              maxlength="30"
+              v-model="form.email"
+              placeholder="请输入邮箱地址"></el-input>
           </el-form-item>
         </el-row>
         <el-row>
@@ -84,12 +84,14 @@
 </template>
 
 <script>
+import {getCode} from '../../api/user'
+
 export default {
   name: 'forgetPassword',
   data () {
-    const checkPhone = (rule, value, callback) => {
-      if (!this.$checkPhone.test(value)) {
-        callback(new Error('请填写正确的手机号'))
+    const checkEmail = (rule, value, callback) => {
+      if (!this.$checkEmail.test(value)) {
+        callback(new Error('请填写正确的邮箱'))
       }
     }
     const checkCode = (rule, value, callback) => {
@@ -111,13 +113,13 @@ export default {
     }
     return {
       form: {
-        phone: '',
+        email: '',
         code: '',
         password: '',
         rePassword: ''
       },
       rules: {
-        phone: [{validator: checkPhone, trigger: 'blur'}],
+        email: [{validator: checkEmail, trigger: 'blur'}],
         code: [{validator: checkCode, trigger: 'blur'}],
         password: [{validator: checkPassword, trigger: 'blur'}],
         rePassword: [{validator: checkRepass, trigger: 'blur'}]
@@ -132,14 +134,20 @@ export default {
     },
     getCode () {
       if (this.show) {
-        this.show = false
-        this.timer = setInterval(() => {
-          this.getCodeTime--
-          if (this.getCodeTime === 0) {
-            this.show = true
-            clearInterval(this.timer)
+        getCode({
+          'tos': this.form.email
+        }).then(res => {
+          if (res.code === 200) {
+            this.show = false
+            this.timer = setInterval(() => {
+              this.getCodeTime--
+              if (this.getCodeTime === 0) {
+                this.show = true
+                clearInterval(this.timer)
+              }
+            }, 1000)
           }
-        }, 1000)
+        })
       }
     }
   }
