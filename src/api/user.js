@@ -3,7 +3,7 @@
  * @CreatedBy:WebStorm
  * @Author: the-ruffian
  * @Date: 2021-03-12 11:46
- * @LastEditTime: 2021-07-11 21:48:16
+ * @LastEditTime: 2021-08-15 20:13:53
  * @LastEditors: the-ruffian
 */
 import request, {Method} from '../utils/request'
@@ -61,6 +61,26 @@ export const getMenu = (data = {}) => {
       'Content-Type': 'application/json'
     },
     url: '/api/auth/list',
+    method: Method.POST,
+    data
+  })
+}
+export const getCode = (data = {}) => {
+  return request({
+    header: {
+      'Content-Type': 'application/json'
+    },
+    url: '/api/getCode',
+    method: Method.POST,
+    data
+  })
+}
+export const forgetPassword = (data = {}) => {
+  return request({
+    header: {
+      'Content-Type': 'application/json'
+    },
+    url: '/api/forgetPassword',
     method: Method.POST,
     data
   })
