@@ -3,7 +3,7 @@
  * @CreatedBy:WebStorm
  * @Author: the-ruffian
  * @Date: 2021-08-04 21:10
- * @LastEditTime: 2021-08-15 20:14:21
+ * @LastEditTime: 2021-8-17 21:42:35
  * @LastEditors: the-ruffian
 -->
 <template>
@@ -54,6 +54,8 @@
             prop="password">
             <el-input
               v-model="form.password"
+              type="password"
+              show-password
               placeholder="请输入密码"></el-input>
           </el-form-item>
         </el-row>
@@ -62,6 +64,8 @@
             prop="rePassword">
             <el-input
               v-model="form.rePassword"
+              type="password"
+              show-password
               placeholder="请确认密码"></el-input>
           </el-form-item>
         </el-row>
@@ -76,6 +80,7 @@
             type="primary"
             size="mini"
             class="right"
+            @click="handleSubmit"
           >确认修改</el-button>
         </el-row>
       </el-form>
@@ -84,7 +89,7 @@
 </template>
 
 <script>
-import {getCode} from '../../api/user'
+import {forgetPassword, getCode} from '../../api/user'
 
 export default {
   name: 'forgetPassword',
@@ -129,6 +134,25 @@ export default {
     }
   },
   methods: {
+    handleSubmit () {
+      if (this.form.password === this.form.rePassword) {
+        const password = this.$md5(this.form.password)
+        forgetPassword({
+          'password': password,
+          'rePassword': password,
+          'code': this.form.code,
+          'email': this.form.email
+        })
+          .then(res => {
+            if (res.data.code === 200) {
+              this.$message.success(res.data.message)
+              setTimeout(function () { location.replace('/login') }, 2000)
+            } else {
+              this.$message.error(res.data.message)
+            }
+          })
+      }
+    },
     handleBack () {
       location.replace('/login')
     },
