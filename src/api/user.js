@@ -3,16 +3,13 @@
  * @CreatedBy:WebStorm
  * @Author: the-ruffian
  * @Date: 2021-03-12 11:46
- * @LastEditTime: 2021-08-15 20:13:53
+ * @LastEditTime: 2021-8-18 21:18:49
  * @LastEditors: the-ruffian
 */
 import request, {Method} from '../utils/request'
 
 export const userRegister = (data = {}) => {
   return request({
-    header: {
-      'Content-Type': 'application/json'
-    },
     url: '/api/user/register',
     method: Method.POST,
     data
@@ -20,9 +17,6 @@ export const userRegister = (data = {}) => {
 }
 export const userLogin = (data = {}) => {
   return request({
-    header: {
-      'Content-Type': 'application/json'
-    },
     url: '/api/user/login',
     method: Method.POST,
     data
@@ -37,9 +31,6 @@ export const userDelete = (data = {}) => {
 }
 export const userUpdate = (data = {}) => {
   return request({
-    header: {
-      'Content-Type': 'application/json'
-    },
     url: '/api/user/update',
     method: Method.PUT,
     data
@@ -47,9 +38,6 @@ export const userUpdate = (data = {}) => {
 }
 export const userFindAll = (data = {}) => {
   return request({
-    header: {
-      'Content-Type': 'application/json'
-    },
     url: '/api/user/list',
     method: Method.POST,
     data
@@ -57,9 +45,6 @@ export const userFindAll = (data = {}) => {
 }
 export const getMenu = (data = {}) => {
   return request({
-    header: {
-      'Content-Type': 'application/json'
-    },
     url: '/api/auth/list',
     method: Method.POST,
     data
@@ -67,9 +52,6 @@ export const getMenu = (data = {}) => {
 }
 export const getCode = (data = {}) => {
   return request({
-    header: {
-      'Content-Type': 'application/json'
-    },
     url: '/api/getCode',
     method: Method.POST,
     data
@@ -77,9 +59,6 @@ export const getCode = (data = {}) => {
 }
 export const forgetPassword = (data = {}) => {
   return request({
-    header: {
-      'Content-Type': 'application/json'
-    },
     url: '/api/forgetPassword',
     method: Method.POST,
     data
