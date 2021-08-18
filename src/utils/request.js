@@ -1,10 +1,10 @@
 /*
- * @Description:request.js
+ * @Description:请求响应拦截器
  * @CreatedBy:WebStorm
- * @Author: BugP
+ * @Author: the-ruffian
  * @Date: 2021-03-10 23:51
- * @LastEditTime: 2021-3-12 12:52:48
- * @LastEditors: BugP
+ * @LastEditTime: 2021-8-18 21:30:26
+ * @LastEditors: the-ruffian
 */
 import axios from 'axios'
 
@@ -17,6 +17,9 @@ service.interceptors.request.use(
     const token = localStorage.getItem('token')
     if (token) {
       config.headers.authorization = token
+    }
+    if (config.method === 'post' || config.method === 'put') {
+      config.headers.contentType = 'application/json'
     }
     return config
   },
