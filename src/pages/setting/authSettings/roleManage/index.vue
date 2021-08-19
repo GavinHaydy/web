@@ -1,9 +1,9 @@
 <!--
- * @Description:index.vue
+ * @Description:角色页面
  * @CreatedBy:WebStorm
  * @Author: the-ruffian
  * @Date: 2021-06-15 09:23
- * @LastEditTime: 2021-07-17 15:52:01
+ * @LastEditTime: 2021-8-19 21:00:56
  * @LastEditors: the-ruffian
 -->
 <template>
@@ -68,6 +68,13 @@
           </template>
         </el-table-column>
         <el-table-column
+          label="状态"
+        >
+          <template slot-scope="scope">
+            启用
+          </template>
+        </el-table-column>
+        <el-table-column
           label="操作"
           fixed="right">
           <template slot-scope="{row}">
@@ -81,6 +88,10 @@
               size="mini"
               @click="handleDelete(row)"
             >删除</el-button>
+            <el-button
+              type="text"
+              size="mini"
+            >权限</el-button>
           </template>
         </el-table-column>
       </el-table>
