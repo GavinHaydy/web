@@ -3,7 +3,7 @@
  * @CreatedBy:WebStorm
  * @Author: the-ruffian
  * @Date: 2021-06-15 09:23
- * @LastEditTime: 2021-8-19 21:00:56
+ * @LastEditTime: 2021-8-20 17:43:04
  * @LastEditors: the-ruffian
 -->
 <template>
@@ -69,9 +69,15 @@
         </el-table-column>
         <el-table-column
           label="状态"
+          prop="status"
         >
           <template slot-scope="scope">
-            启用
+            <el-button
+              type="text"
+              :style="{color: scope.row.status === '0' ? '#539ffe' : 'red'}"
+            >
+            {{scope.row.status === '0' ? '启用' : '禁用'}}
+            </el-button>
           </template>
         </el-table-column>
         <el-table-column
@@ -237,12 +243,14 @@ export default {
         'pageSize': 10
       })
         .then(res => {
-          this.allRole.orders = res.data.result.orders
-          this.allRole.form = res.data.result.list
-          this.allRole.current = res.data.result.pageNum
-          this.allRole.pages = res.data.result.pages
-          this.allRole.size = res.data.result.size
-          this.allRole.total = res.data.result.total
+          if (res.data.code === 200) {
+            this.allRole.orders = res.data.result.orders
+            this.allRole.form = res.data.result.list
+            this.allRole.current = res.data.result.pageNum
+            this.allRole.pages = res.data.result.pages
+            this.allRole.size = res.data.result.size
+            this.allRole.total = res.data.result.total
+          }
         })
     },
     parseTime,
@@ -288,7 +296,7 @@ export default {
         'note': this.add_form.note
       })
         .then(res => {
-          if (res.data.success === true) {
+          if (res.data.code === 200) {
             this.$message.success(res.data.message)
             this.addDialogFormVisible = false
             setTimeout(function () { location.reload() }, 1000)
@@ -314,7 +322,7 @@ export default {
           'note': this.editForm.note
         })
           .then(res => {
-            if (res.data.success === true) {
+            if (res.data.code === 200) {
               this.$message.success(res.data.message)
               this.putDialogFormVisible = false
               setTimeout(function () { location.reload() }, 1000)
