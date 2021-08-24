@@ -3,7 +3,7 @@
  * @CreatedBy:WebStorm
  * @Author: the-ruffian
  * @Date: 2021-06-15 09:23
- * @LastEditTime: 2021-8-20 17:43:04
+ * @LastEditTime: 2021-8-24 17:58:14
  * @LastEditors: the-ruffian
 -->
 <template>
@@ -71,12 +71,13 @@
           label="状态"
           prop="status"
         >
-          <template slot-scope="scope">
+          <template slot-scope="{row}">
             <el-button
               type="text"
-              :style="{color: scope.row.status === '0' ? '#539ffe' : 'red'}"
+              @click="handleFixStatus(row)"
+              :style="{color: row.status === '0' ? '#539ffe' : 'red'}"
             >
-            {{scope.row.status === '0' ? '启用' : '禁用'}}
+            {{row.status === '0' ? '启用' : '禁用'}}
             </el-button>
           </template>
         </el-table-column>
@@ -199,7 +200,7 @@
 </template>
 
 <script>
-import {addRole, deleteRole, roleList, updateRole} from '../../../../api/role'
+import {addRole, deleteRole, fixRoleStatus, roleList, updateRole} from '../../../../api/role'
 import {parseTime} from '../../../../utils/parseTime'
 
 export default {
@@ -342,6 +343,46 @@ export default {
           this.$message.success(res.data.message())
           setTimeout(function () { location.reload() }, 1000)
         })
+    },
+    handleFixStatus (row) {
+      if (row.status === '0') {
+        fixRoleStatus({
+          'roleName': row.roleName,
+          'status': 1
+        }).then(res => {
+          if (res.data.code === 200) {
+            this.ajaxFun()
+          }
+        })
+      } else if (row.status === '1') {
+        fixRoleStatus({
+          'roleName': row.roleName,
+          'status': 0
+        }).then(res => {
+          if (res.data.code === 200) {
+            this.ajaxFun()
+          }
+        })
+      }
+      // if (row.status === 0) {
+      //   fixRoleStatus({
+      //     'roleName': row.roleName,
+      //     'status': 1
+      //   }).then(res => {
+      //     if (res.data.code === 200) {
+      //       console.log(0)
+      //     }
+      //   })
+      // } else if (row.status === 1) {
+      //   fixRoleStatus({
+      //     'roleName': row.roleName,
+      //     'status': 0
+      //   }).then(res => {
+      //     if (res.data.code === 200) {
+      //       console.log(1)
+      //     }
+      //   })
+      // }
     }
   }
 }
