@@ -3,7 +3,7 @@
  * @CreatedBy:WebStorm
  * @Author: the-ruffian
  * @Date: 2021-06-15 09:03
- * @LastEditTime: 2021-08-22 17:49:45
+ * @LastEditTime: 2021-8-24 17:23:23
  * @LastEditors: the-ruffian
 */
 import request, {Method} from '../utils/request'
@@ -38,6 +38,13 @@ export const deleteRole = (data = {}) => {
 export const permission = (data = {}) => {
   return request({
     url: '/api/role/permission',
+    method: Method.POST,
+    data
+  })
+}
+export const fixRoleStatus = (data = {}) => {
+  return request({
+    url: '/api/role/fixStatus',
     method: Method.POST,
     data
   })
